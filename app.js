@@ -10,7 +10,7 @@ app.get('/', (req, res) => {
     res.send("Node server live!");
 });
 app.get('/dashboard', (req, res) => {
-    serve_static_file('index.html');
+    serve_static_file('index.html', res);
 });
 
 
