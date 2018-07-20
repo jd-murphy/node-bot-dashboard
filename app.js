@@ -9,7 +9,7 @@ app.get('/', (req, res) => {
     res.send("Node server live!");
 });
 app.get('/dashboard', (req, res) => {
-    res.send("Here is your dashboard");
+    res.send("/index.html");
 });
 
 
