@@ -71,7 +71,22 @@ function setUpFirebase() {
         }
     
 
+function updateTable(data){
+    data = JSON.parse(data)
+            console.log("/getLogs data ->")
+            console.log(data)
 
+
+            Object.keys(data).forEach(function (key) {
+                // do something with data[key]
+                console.log("data[key].date")
+                console.log(data[key].date)
+                console.log("data[key].info")
+                console.log(data[key].info)
+                $('#logTable > tbody:last-child').append('<tr><td>' + data[key].date + '</td><td>' + data[key].info + '</td></tr>');
+            });
+
+}
 
 // function serve_static_file(file, res) {
 //     var rs = fs.createReadStream(file);
