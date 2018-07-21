@@ -104,7 +104,7 @@ function getDataFromFirebase() {
             console.log("connecting to firebase!");
             ref.on("value", function(snapshot) {
                 console.log("SNAPSHOT ->  ");
-                console.log(JSON.stringify(snapshot.val()))
+                // console.log(JSON.stringify(snapshot.val()))
                 // data = snapshot.val()
                 // console.log("object.keys -> ")
                 // console.log(Object.keys(data))
@@ -117,8 +117,8 @@ function getDataFromFirebase() {
                 //   });
                 
                 // res.write(JSON.stringify(snapshot.val()));
-                data = JSON.parse(data)
-                console.log("/getLogs data ->")
+                data = snapshot.val()
+                console.log("snapshot.val()       data ->")
                 console.log(data)
                 io.emit('notify', JSON.stringify(data));
         
