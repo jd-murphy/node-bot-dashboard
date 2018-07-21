@@ -46,8 +46,8 @@ app.get('/api/getLogs', (req, res) => {
             console.log(data[key].info)
           });
         
-        // res.send(snapshot.val());
-        return snapshot.val();
+        res.write(snapshot.val());
+        
     });
 
 });
