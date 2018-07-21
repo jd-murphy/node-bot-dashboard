@@ -35,10 +35,13 @@ function getLogs() {
     // Attach an asynchronous callback to read the data at our posts reference
     ref.on("value", function(snapshot) {
         console.log("HERE IS THE SNAPSHOT FROM FIREBASE ->  ");
-        data = JSON.parse(snapshot.val())
-        console.log(data)
-
         
+        
+        console.log(snapshot.val().date)
+        console.log(snapshot.val().info)
+        
+
+
     }, function (errorObject) {
         console.log("The read failed: " + errorObject.code);
     });
