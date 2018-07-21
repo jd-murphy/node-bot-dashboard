@@ -28,7 +28,7 @@ app.get('/dashboard', (req, res) => {
     res.sendFile('index.html',{root: __dirname});
 });
 
-app.get('/getLogs', async (req, res) => {
+app.get('/getLogs', (req, res) => {
     var db = admin.database();
     var ref = db.ref("logs");
     console.log("connecting to firebase!");
