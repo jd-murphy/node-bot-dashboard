@@ -37,9 +37,16 @@ io.on("connection", function (socket) {
     socket.on("notify", function (notification_request) {
         io.emit('notify', JSON.stringify(notification_request));
     });
-    socket.on("load", function (notification_request) {
-        getDataFromFirebase();
+    socket.on("pinDataUpdate", function (notification_request) {
+        io.emit('pinDataUpdate', JSON.stringify(notification_request));
     });
+    socket.on("loadLogData", function (notification_request) {
+        getLogDataFromFirebase();
+    });
+    socket.on("loadPinData", function (notification_request) {
+        getPinDataFromFirebase();
+    });
+    
 });
 
 
@@ -59,7 +66,7 @@ function setUpFirebase() {
         }
 
 
-function getDataFromFirebase() {
+function getLogDataFromFirebase() {
             var db = admin.database();
             var ref = db.ref("logs");
             console.log("connecting to firebase!");
@@ -70,6 +77,21 @@ function getDataFromFirebase() {
                 console.log(data)
                 io.emit('notify', JSON.stringify(data));
                 console.log("io.emit notify!!!!      ( app.js )    ->")
+            });
+        }
+        
+
+function getPinDataFromFirebase() {
+            var db = admin.database();
+            var ref = db.ref("pin_data");
+            console.log("connecting to firebase!");
+            ref.on("value", function(snapshot) {
+                console.log("SNAPSHOT ->  ");
+                data = snapshot.val()
+                console.log("snapshot.val()       data ->")
+                console.log(data)
+                io.emit('pinDataUpdate', JSON.stringify(data));
+                console.log("io.emit  pin_data!!!!      ( app.js )    ->")
             });
         }
         

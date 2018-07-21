@@ -30,6 +30,7 @@
                     <hr class="my-4">
                     <p class="lead">Manage your bots like a boss.</p>
                     <button type="button" class="btn btn-success" id="loadLogs">Load Logs</button>
+                    <button type="button" class="btn btn-success" id="loadPins">Load Pin Data</button>
                 </div>
 
                     <div class="row">
@@ -111,7 +112,10 @@
             console.log("document ready")
             
             $("#loadLogs").click(function(){
-                socket.emit('load');
+                socket.emit('loadLogData');
+            });
+            $("#loadPins").click(function(){
+                socket.emit('loadPinData');
             });
            
             var socket = io();
@@ -126,6 +130,19 @@
                         console.log("data[key].info")
                         console.log(data[key].info)
                         $('#logTable > tbody:last-child').append('<tr class="table-active"><td>' + data[key].date + '</td><td>' + data[key].info + '</td></tr>');
+                    });
+            });
+            socket.on('pinDataUpdate', function (notification) {
+                console.log('SOCKET on pinDataUpdate!      ( index.html )   ')
+                var data = JSON.parse(notification); //process notication array
+                // $("#logTable tbody tr").remove(); 
+                Object.keys(data).forEach(function (key) {
+                        // do something with data[key]
+                        console.log("data[key].date")
+                        console.log(data[key].date)
+                        console.log("data[key].info")
+                        console.log(data[key].info)
+                        // $('#logTable > tbody:last-child').append('<tr class="table-active"><td>' + data[key].date + '</td><td>' + data[key].info + '</td></tr>');
                     });
             });
         });
