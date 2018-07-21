@@ -45,7 +45,7 @@ app.get('/api/getLogs', (req, res) => {
         //     console.log("data[key].info")
         //     console.log(data[key].info)
         //   });
-        
+        updateTable(JSON.stringify(snapshot.val()));
         res.write(JSON.stringify(snapshot.val()));
         
     });
