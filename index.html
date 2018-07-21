@@ -111,31 +111,17 @@
         $(document).ready(function(){
             console.log("document ready")
 
-
-
-
-            var db = admin.database();
-            var ref = db.ref("logs");
-            console.log("connecting to firebase!");
-            ref.on("value", function(snapshot) {
-                console.log("HERE IS THE SNAPSHOT FROM FIREBASE ->  ");
+            $.ajax({
+                type: 'GET',
+                url: '/api/getLogs',
+                async: false,
+                success: function(data) {
                 
-                data = snapshot.val()
-                console.log("object.keys -> ")
-                console.log(Object.keys(data))
-                console.log("starting for each key loop -> ")
-                Object.keys(data).forEach(function (key) {
-                    console.log("data[key].date")
-                    console.log(data[key].date)
-                    console.log("data[key].info")
-                    console.log(data[key].info)
-                });
-                
-                console.log("Is this    /api/getLogs     throwing the error? ")
-                console.log("calling      res.send(snapshot.val());    ")
-                data = snapshot.val();
+                    console.log("/getLogs data ->")
+                    console.log(data)
 
-                Object.keys(data).forEach(function (key) {
+
+                    Object.keys(data).forEach(function (key) {
                         // do something with data[key]
                         console.log("data[key].date")
                         console.log(data[key].date)
@@ -146,37 +132,11 @@
 
 
 
-
-
-
-
-            //  $.ajax({
-            //      type: 'GET',
-            //      url: '/api/getLogs',
-            //      async: false,
-            //      success: function(data) {
-                
-            //          console.log("/getLogs data ->")
-            //          console.log(data)
-
-
-            //          Object.keys(data).forEach(function (key) {
-            //              // do something with data[key]
-            //              console.log("data[key].date")
-            //              console.log(data[key].date)
-            //              console.log("data[key].info")
-            //              console.log(data[key].info)
-            //              $('#logTable > tbody:last-child').append('<tr><td>' + data[key].date + '</td><td>' + data[key].info + '</td></tr>');
-            //          });
-
-
-
-            //     }
-            // }); 
+                }
+            });
         
         
         });
-    });
             
     </script>
   </body>
