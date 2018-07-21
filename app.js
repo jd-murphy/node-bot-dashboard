@@ -6,7 +6,6 @@ const server = require('http').createServer(app);
 const admin = require('firebase-admin');
 const serviceAccount = process.env.SERVICEACCOUNT
 const PORT = process.env.PORT || 3000;
-const admin = require('firebase-admin');
 const io = require('socket.io')(server);
 
 
