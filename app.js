@@ -17,7 +17,8 @@ app.get('/dashboard', (req, res) => {
 
 app.get('/getLogs', (req, res) => {
     dataz = firebaseWorker.getLogs();
-    res.send(dataz)
+    res.write(dataz);
+    res.end();
 });
 
 
