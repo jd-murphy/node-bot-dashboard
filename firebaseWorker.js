@@ -44,8 +44,10 @@ function getLogs() {
         console.log("starting for each key loop -> ")
         Object.keys(data).forEach(function (key) {
             // do something with data[key]
-            console.log("data[key]")
-            console.log(data[key])
+            console.log("data[key].date")
+            console.log(data[key].date)
+            console.log("data[key].info")
+            console.log(data[key].info)
           });
         
         
