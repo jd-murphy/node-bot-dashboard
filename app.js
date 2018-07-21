@@ -2,12 +2,9 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const fs = require('fs');
 const app = express();
-const PORT = process.env.PORT || 3000;
-// const firebaseWorker = require('./firebaseWorker')
-
 var admin = require('firebase-admin');
 var serviceAccount = process.env.SERVICEACCOUNT
-// var fs = require('fs');
+const PORT = process.env.PORT || 3000;
 
 
 config = {
@@ -26,6 +23,7 @@ app.use(bodyParser.json());
 app.get('/', (req, res) => {
     res.send("Node server live!");
 });
+
 app.get('/dashboard', (req, res) => {
     serve_static_file('index.html', res);
 });
@@ -34,18 +32,14 @@ app.get('/getLogs', async (req, res) => {
     var db = admin.database();
     var ref = db.ref("logs");
     console.log("connecting to firebase!");
-    // Attach an asynchronous callback to read the data at our posts reference
     ref.on("value", function(snapshot) {
         console.log("HERE IS THE SNAPSHOT FROM FIREBASE ->  ");
         
         data = snapshot.val()
-        
-        // console.log(JSON.stringify(snapshot.val()))
         console.log("object.keys -> ")
         console.log(Object.keys(data))
         console.log("starting for each key loop -> ")
         Object.keys(data).forEach(function (key) {
-            // do something with data[key]
             console.log("data[key].date")
             console.log(data[key].date)
             console.log("data[key].info")
