@@ -53,9 +53,7 @@ app.get('/api/getLogs', (req, res) => {
         res.end(); 
         console.log("finished calling    res.end();    ")
     });
-    
-    console.log("calling      res.end();     outside of the   on snapshot  ")
-    res.end();
+
 });
 
 
