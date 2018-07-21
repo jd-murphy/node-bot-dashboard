@@ -46,10 +46,16 @@ app.get('/api/getLogs', (req, res) => {
             console.log(data[key].info)
           });
         
-         res.send(snapshot.val());
-         res.end(); 
+        console.log("Is this    /api/getLogs     throwing the error? ")
+        console.log("calling      res.send(snapshot.val());    ")
+        res.send(snapshot.val());
+        console.log("calling      res.end();  ")
+        res.end(); 
+        console.log("finished calling    res.end();    ")
     });
     
+    console.log("calling      res.end();     outside of the   on snapshot  ")
+    res.end();
 });
 
 
