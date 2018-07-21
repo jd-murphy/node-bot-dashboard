@@ -112,9 +112,15 @@
         $(document).ready(function(){
             console.log("document ready")
             
+            const myModule = require('./script.js');
+            myModule.setUpFirebase();
+            myModule.getDataFromFirebase();
+            
 
-            setUpFirebase();
-            getDataFromFirebase();
+
+
+
+
 
             // $.ajax({
             //     type: 'GET',

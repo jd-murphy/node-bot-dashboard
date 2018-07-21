@@ -61,5 +61,5 @@ function getDataFromFirebase() {
 }
 
 
-// module.exports.setUpFirebase = setUpFirebase;
-// module.exports.getDataFromFirebase = getDataFromFirebase;
+module.exports.setUpFirebase = setUpFirebase;
+module.exports.getDataFromFirebase = getDataFromFirebase;
