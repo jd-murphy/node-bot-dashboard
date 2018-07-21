@@ -37,8 +37,8 @@ function getLogs() {
         console.log("HERE IS THE SNAPSHOT FROM FIREBASE ->  ");
         
         
-        console.log(snapshot.val().date)
-        console.log(snapshot.val().info)
+        console.log(JSON.stringify(snapshot.val()))
+        
         
 
 
