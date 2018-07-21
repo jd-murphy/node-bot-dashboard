@@ -129,10 +129,10 @@
                 // $('#notification-div').append(notifications); //display the notification here which is going to be reflected for all clients
                 $("#logTable tr").remove(); 
                 $('#logTable > tbody:last-child').append('<tr><td>Date & Time</td><td>Log Output</td></tr>');
-                i = 1
+                i = 1;
                 Object.keys(data).forEach(function (key) {
                         // do something with data[key]
-                        if (i%2 == 0){
+                        if (0 == (i%2)){
                             $('#logTable > tbody:last-child').append('<tr class="table-dark><td>' + data[key].date + '</td><td>' + data[key].info + '</td></tr>');
                         } else {
                             $('#logTable > tbody:last-child').append('<tr class="table-light><td>' + data[key].date + '</td><td>' + data[key].info + '</td></tr>');
@@ -141,7 +141,7 @@
                         console.log(data[key].date)
                         console.log("data[key].info")
                         console.log(data[key].info)
-                        i++;
+                        i+=1;
                     });
             });
             
