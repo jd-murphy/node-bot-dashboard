@@ -33,18 +33,18 @@ app.get('/api/getLogs', (req, res) => {
     var ref = db.ref("logs");
     console.log("connecting to firebase!");
     ref.on("value", function(snapshot) {
-        console.log("HERE IS THE SNAPSHOT FROM FIREBASE ->  ");
-        
-        data = snapshot.val()
-        console.log("object.keys -> ")
-        console.log(Object.keys(data))
-        console.log("starting for each key loop -> ")
-        Object.keys(data).forEach(function (key) {
-            console.log("data[key].date")
-            console.log(data[key].date)
-            console.log("data[key].info")
-            console.log(data[key].info)
-          });
+        console.log("SNAPSHOT ->  ");
+        console.log(JSON.stringify(snapshot.val()))
+        // data = snapshot.val()
+        // console.log("object.keys -> ")
+        // console.log(Object.keys(data))
+        // console.log("starting for each key loop -> ")
+        // Object.keys(data).forEach(function (key) {
+        //     console.log("data[key].date")
+        //     console.log(data[key].date)
+        //     console.log("data[key].info")
+        //     console.log(data[key].info)
+        //   });
         
         res.write(JSON.stringify(snapshot.val()));
         
