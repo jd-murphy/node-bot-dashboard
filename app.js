@@ -3,6 +3,8 @@ const bodyParser = require('body-parser');
 const fs = require('fs');
 const app = express();
 const PORT = process.env.PORT || 3000;
+const firebaseWorker = require('firebaseWorker.js')
+
 
 app.use(bodyParser.json());
 
@@ -16,7 +18,8 @@ app.get('/dashboard', (req, res) => {
 
 
 app.listen(PORT, () => {
-  console.log("Listening on port " + PORT);
+    console.log("Listening on port " + PORT);
+    firebaseWorker.setUpServiceAccountFile();
 });
 
 
