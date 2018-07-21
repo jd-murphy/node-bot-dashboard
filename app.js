@@ -47,11 +47,7 @@ app.get('/getLogs', (req, res) => {
           });
         
          res.send(snapshot.val());
-        
-
-
-    }, function (errorObject) {
-        console.log("The read failed: " + errorObject.code);
+    
     });
     
 });
