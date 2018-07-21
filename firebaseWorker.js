@@ -10,20 +10,20 @@ config = {
     "projectId": process.env.PROJECTID,
     "storageBucket": process.env.STORAGEBUCKET,
     "messagingSenderId": process.env.MESSAGINGSENDERID,
-    "serviceAccount": process.env.SAPATH
+    "serviceAccount": process.env.SERVICEACCOUNT // was sapath
   }
 
 
 
 function setUpServiceAccountFile() {
     console.log("setUpServiceAccountFile()")
-    fs.writeFile(process.env.SAPATH, process.env.SERVICEACCOUNT,  'utf8', function(err) {
-        console.log("writing file...")
-        if(err) {
-            console.log("ERROR writing file!!!")
-            return console.log(err);
-        } else {
-            console.log("No error, initializing firebase.")
+    // fs.writeFile(process.env.SAPATH, process.env.SERVICEACCOUNT,  'utf8', function(err) {
+    //     console.log("writing file...")
+    //     if(err) {
+    //         console.log("ERROR writing file!!!")
+    //         return console.log(err);
+    //     } else {
+            // console.log("No error, initializing firebase.")
             admin.initializeApp({
                 credential: admin.credential.cert(serviceAccount),
                 databaseURL: 'https://twilio-bot-1601d.firebaseio.com/'
@@ -33,9 +33,10 @@ function setUpServiceAccountFile() {
         }
     
         
-    });
+    // });
     
-    }
+    // }
+
 
 function getLogs() {
     console.log("calling getLogs()");
