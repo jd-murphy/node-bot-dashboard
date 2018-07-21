@@ -132,14 +132,19 @@
                 var data = JSON.parse(notification); //process notication array
                 // $('#notification-div').append(notifications); //display the notification here which is going to be reflected for all clients
                 $("#logTable tr").remove(); 
-                
+                var i = 1;
                 Object.keys(data).forEach(function (key) {
                         // do something with data[key]
                         console.log("data[key].date")
                         console.log(data[key].date)
                         console.log("data[key].info")
                         console.log(data[key].info)
-                        $('#logTable > tbody:last-child').append('<tr class="table-dark"><td>' + data[key].date + '</td><td>' + data[key].info + '</td></tr>');
+                        if (0 == (i%2)) {
+                            $('#logTable > tbody:last-child').append('<tr class="table-dark"><td>' + data[key].date + '</td><td>' + data[key].info + '</td></tr>');
+                        } else {
+                            $('#logTable > tbody:last-child').append('<tr class="table-light"><td>' + data[key].date + '</td><td>' + data[key].info + '</td></tr>');
+                        }
+                        
                     });
             });
             
