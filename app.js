@@ -7,7 +7,7 @@ const PORT = process.env.PORT || 3000;
 
 var admin = require('firebase-admin');
 var serviceAccount = process.env.SERVICEACCOUNT
-var fs = require('fs');
+// var fs = require('fs');
 
 
 config = {
