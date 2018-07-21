@@ -114,7 +114,7 @@
             $.ajax({
                 type: 'GET',
                 url: '/api/getLogs',
-                async: false,
+                async: true,
                 success: function(data) {
                 
                     data = JSON.parse(data)
