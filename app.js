@@ -15,8 +15,9 @@ app.get('/dashboard', (req, res) => {
     serve_static_file('index.html', res);
 });
 
-app.get('/getLogs', (req, res) => {
-    res.send(firebaseWorker.getLogs());
+app.get('/getLogs', async (req, res) => {
+    data = await firebaseWorker.getLogs()
+    res.send(data);
 });
 
 
