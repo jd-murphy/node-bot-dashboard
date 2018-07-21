@@ -49,7 +49,7 @@ function getLogs() {
             console.log(data[key].info)
           });
         
-        return data;
+        return snapshot.val();
         
 
 
