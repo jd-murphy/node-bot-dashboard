@@ -119,6 +119,8 @@
             //     return false;
             // });
             socket.on('notify', function (notification) {
+                console.log('SOCKET on Notify!      ( index.html )   ')
+                
                 var data = JSON.parse(notification); //process notication array
                 // $('#notification-div').append(notifications); //display the notification here which is going to be reflected for all clients
                 Object.keys(data).forEach(function (key) {

@@ -121,7 +121,7 @@ function getDataFromFirebase() {
                 console.log("snapshot.val()       data ->")
                 console.log(data)
                 io.emit('notify', JSON.stringify(data));
-        
+                console.log("io.emit notify!!!!      ( app.js )    ->")
         
                 // Object.keys(data).forEach(function (key) {
                 //     // do something with data[key]
