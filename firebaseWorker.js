@@ -25,7 +25,7 @@ function setUpServiceAccountFile() {
     //     } else {
             // console.log("No error, initializing firebase.")
             admin.initializeApp({
-                credential: admin.credential.cert(serviceAccount),
+                credential: admin.credential.cert(JSON.parse(serviceAccount)),
                 databaseURL: 'https://twilio-bot-1601d.firebaseio.com/'
                 });
                 console.log("firebase initialized!");
