@@ -7,15 +7,15 @@ var serviceAccount = process.env.SERVICEACCOUNT
 const PORT = process.env.PORT || 3000;
 
 
-config = {
-    "apiKey": process.env.FIREBASEAPIKEY,
-    "authDomain": process.env.AUTHDOMAIN,
-    "databaseURL": process.env.DATABASEURL,
-    "projectId": process.env.PROJECTID,
-    "storageBucket": process.env.STORAGEBUCKET,
-    "messagingSenderId": process.env.MESSAGINGSENDERID,
-    "serviceAccount": process.env.SERVICEACCOUNT 
-  }
+// config = {
+//     "apiKey": process.env.FIREBASEAPIKEY,
+//     "authDomain": process.env.AUTHDOMAIN,
+//     "databaseURL": process.env.DATABASEURL,
+//     "projectId": process.env.PROJECTID,
+//     "storageBucket": process.env.STORAGEBUCKET,
+//     "messagingSenderId": process.env.MESSAGINGSENDERID,
+//     "serviceAccount": process.env.SERVICEACCOUNT 
+//   }
 
 
 app.use(bodyParser.json());
@@ -28,29 +28,29 @@ app.get('/dashboard', (req, res) => {
     res.sendFile('index.html',{root: __dirname});
 });
 
-app.get('/api/getLogs', (req, res) => {
-    var db = admin.database();
-    var ref = db.ref("logs");
-    console.log("connecting to firebase!");
-    ref.on("value", function(snapshot) {
-        console.log("SNAPSHOT ->  ");
-        console.log(JSON.stringify(snapshot.val()))
-        // data = snapshot.val()
-        // console.log("object.keys -> ")
-        // console.log(Object.keys(data))
-        // console.log("starting for each key loop -> ")
-        // Object.keys(data).forEach(function (key) {
-        //     console.log("data[key].date")
-        //     console.log(data[key].date)
-        //     console.log("data[key].info")
-        //     console.log(data[key].info)
-        //   });
-        updateTable(JSON.stringify(snapshot.val()));
-        res.write(JSON.stringify(snapshot.val()));
+// app.get('/api/getLogs', (req, res) => {
+//     var db = admin.database();
+//     var ref = db.ref("logs");
+//     console.log("connecting to firebase!");
+//     ref.on("value", function(snapshot) {
+//         console.log("SNAPSHOT ->  ");
+//         console.log(JSON.stringify(snapshot.val()))
+//         // data = snapshot.val()
+//         // console.log("object.keys -> ")
+//         // console.log(Object.keys(data))
+//         // console.log("starting for each key loop -> ")
+//         // Object.keys(data).forEach(function (key) {
+//         //     console.log("data[key].date")
+//         //     console.log(data[key].date)
+//         //     console.log("data[key].info")
+//         //     console.log(data[key].info)
+//         //   });
         
-    });
+//         res.write(JSON.stringify(snapshot.val()));
+        
+//     });
 
-});
+// });
 
 
 
@@ -61,32 +61,17 @@ app.listen(PORT, () => {
 
 
 
-function setUpFirebase() {
-    console.log("setUpFirebase()")
-            admin.initializeApp({
-                credential: admin.credential.cert(JSON.parse(serviceAccount)),
-                databaseURL: 'https://twilio-bot-1601d.firebaseio.com/'
-                });
-            console.log("firebase initialized!");
-        }
+// function setUpFirebase() {
+//     console.log("setUpFirebase()")
+//             admin.initializeApp({
+//                 credential: admin.credential.cert(JSON.parse(serviceAccount)),
+//                 databaseURL: 'https://twilio-bot-1601d.firebaseio.com/'
+//                 });
+//             console.log("firebase initialized!");
+//         }
     
 
-function updateTable(data){
-    data = JSON.parse(data)
-            console.log("/getLogs data ->")
-            console.log(data)
 
-
-            Object.keys(data).forEach(function (key) {
-                // do something with data[key]
-                console.log("data[key].date")
-                console.log(data[key].date)
-                console.log("data[key].info")
-                console.log(data[key].info)
-                $('#logTable > tbody:last-child').append('<tr><td>' + data[key].date + '</td><td>' + data[key].info + '</td></tr>');
-            });
-
-}
 
 // function serve_static_file(file, res) {
 //     var rs = fs.createReadStream(file);
