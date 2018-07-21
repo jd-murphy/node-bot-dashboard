@@ -41,7 +41,7 @@ app.get('/', (req, res) => {
 app.get('/dashboard', (req, res) => {
 
     res.sendFile('index.html',{root: __dirname});
-    getDataFromFirebase();
+    // getDataFromFirebase();
 });
 
 
