@@ -114,6 +114,7 @@
             $.ajax({
                 type: 'GET',
                 url: '/getLogs',
+                async: false,
                 success: function(data) {
                 
                     console.log("/getLogs data ->")
