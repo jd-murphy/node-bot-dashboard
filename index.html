@@ -90,8 +90,8 @@
             <table class="table" id="logTable">
                 <tbody>
                     <tr>
-                        <td>Date & Time</td>
-                        <td>Log Output</td>
+                        <th>Date & Time</th>
+                        <th>Log Output</th>
                     </tr>
                 </tbody>
             </table>
@@ -123,6 +123,7 @@
                 
                 var data = JSON.parse(notification); //process notication array
                 // $('#notification-div').append(notifications); //display the notification here which is going to be reflected for all clients
+                $("#logTable tr").remove(); 
                 Object.keys(data).forEach(function (key) {
                         // do something with data[key]
                         console.log("data[key].date")
