@@ -112,6 +112,14 @@
         $(document).ready(function(){
             console.log("document ready")
             
+            Object.keys(data).forEach(function (key) {
+                        // do something with data[key]
+                console.log("data[key].date")
+                console.log(data[key].date)
+                console.log("data[key].info")
+                console.log(data[key].info)
+                $('#logTable > tbody:last-child').append('<tr><td>' + data[key].date + '</td><td>' + data[key].info + '</td></tr>');
+            });
            
             var socket = io();
             // $('button').click(function () { //notify event triggered
