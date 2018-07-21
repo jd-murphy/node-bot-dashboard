@@ -29,7 +29,7 @@
                     <h1 class="display-3">Bot Dashboard</h1>
                     <hr class="my-4">
                     <p class="lead">Manage your bots like a boss.</p>
-                    <!-- <button type="button" class="btn btn-outline-success" id="loadLogs">Load Logs</button> -->
+                    <button type="button" class="btn btn-outline-success" id="loadLogs">Load Logs</button>
                 </div>
 
                     <div class="row">
@@ -89,11 +89,14 @@
 
 
             <table class="table" id="logTable">
+                <thead>
+                        <tr>
+                            <th>Date & Time</th>
+                            <th>Log Output</th>
+                        </tr>
+                </thead>
                 <tbody>
-                    <tr>
-                        <th>Date & Time</th>
-                        <th>Log Output</th>
-                    </tr>
+                    
                 </tbody>
             </table>
 
@@ -112,12 +115,12 @@
 
         $(document).ready(function(){
             console.log("document ready")
-            socket.emit('load');
+            
 
 
-            // $("#loadLogs").click(function(){
-            //     socket.emit('load');
-            // });
+            $("#loadLogs").click(function(){
+                socket.emit('load');
+            });
            
            
             var socket = io();
