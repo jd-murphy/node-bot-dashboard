@@ -68,7 +68,7 @@ function getDataFromFirebase() {
         });
         
     });
-}
+});
 
 
 module.exports.setUpFirebase = setUpFirebase;
