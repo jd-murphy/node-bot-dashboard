@@ -87,11 +87,13 @@
             </div> -->
 
 
-            <table class="table">
-                <tr>
-                    <td>Date & Time</td>
-                    <td>Log Output</td>
-                </tr>
+            <table class="table" id="logTable">
+                <tbody>
+                    <tr>
+                        <td>Date & Time</td>
+                        <td>Log Output</td>
+                    </tr>
+                </tbody>
             </table>
 
 
@@ -104,5 +106,23 @@
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <!-- Latest compiled and minified JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <script>
+
+        $.get('/getLogs', function(data){
+            Object.keys(data).forEach(function (key) {
+            // do something with data[key]
+            console.log("data[key].date")
+            console.log(data[key].date)
+            console.log("data[key].info")
+            console.log(data[key].info)
+
+            
+            $('#logTable > tbody:last-child').append('<tr><td>' + data[key].date + '</td><td>' + data[key].info + '</td></tr>');
+          });
+        })
+        
+            
+    
+    </script>
   </body>
 </html>

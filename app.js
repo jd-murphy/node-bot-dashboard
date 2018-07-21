@@ -15,11 +15,16 @@ app.get('/dashboard', (req, res) => {
     serve_static_file('index.html', res);
 });
 
+app.get('/getLogs', (req, res) => {
+    data = firebaseWorker.setUpFirebase();
+    res.send(data)
+});
+
 
 
 app.listen(PORT, () => {
     console.log("Listening on port " + PORT);
-    firebaseWorker.setUpServiceAccountFile();
+    // data = firebaseWorker.setUpFirebase();
 });
 
 

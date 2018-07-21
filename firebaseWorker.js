@@ -15,14 +15,14 @@ config = {
 
 
 
-function setUpServiceAccountFile() {
-    console.log("setUpServiceAccountFile()")
+function setUpFirebase() {
+    console.log("setUpFirebase()")
             admin.initializeApp({
                 credential: admin.credential.cert(JSON.parse(serviceAccount)),
                 databaseURL: 'https://twilio-bot-1601d.firebaseio.com/'
                 });
             console.log("firebase initialized!");
-            getLogs();
+            return getLogs();
         }
     
 
@@ -50,7 +50,7 @@ function getLogs() {
             console.log(data[key].info)
           });
         
-        
+        return data;
         
 
 
@@ -60,5 +60,5 @@ function getLogs() {
     console.log("firebase read finished!");
 }
 
-module.exports.setUpServiceAccountFile = setUpServiceAccountFile;
+module.exports.setUpFirebase = setUpFirebase;
 module.exports.getLogs = getLogs;
