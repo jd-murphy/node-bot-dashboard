@@ -16,7 +16,7 @@ app.get('/dashboard', (req, res) => {
 });
 
 app.get('/getLogs', (req, res) => {
-    data = firebaseWorker.setUpFirebase();
+    data = firebaseWorker.getLogs();
     res.send(data)
 });
 
@@ -24,7 +24,7 @@ app.get('/getLogs', (req, res) => {
 
 app.listen(PORT, () => {
     console.log("Listening on port " + PORT);
-    // data = firebaseWorker.setUpFirebase();
+    firebaseWorker.setUpFirebase();
 });
 
 

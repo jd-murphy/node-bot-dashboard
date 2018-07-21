@@ -22,7 +22,6 @@ function setUpFirebase() {
                 databaseURL: 'https://twilio-bot-1601d.firebaseio.com/'
                 });
             console.log("firebase initialized!");
-            return getLogs();
         }
     
 
