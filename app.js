@@ -46,12 +46,8 @@ app.get('/api/getLogs', (req, res) => {
             console.log(data[key].info)
           });
         
-        console.log("Is this    /api/getLogs     throwing the error? ")
-        console.log("calling      res.send(snapshot.val());    ")
-        res.send(snapshot.val());
-        console.log("calling      res.end();  ")
-        res.end(); 
-        console.log("finished calling    res.end();    ")
+        // res.send(snapshot.val());
+        return snapshot.val();
     });
 
 });
