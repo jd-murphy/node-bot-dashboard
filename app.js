@@ -74,6 +74,9 @@ io.on("connection", function (socket) {
     socket.on("notify", function (notification_request) {
         io.emit('notify', JSON.stringify(notification_request));
     });
+    socket.on("load", function (notification_request) {
+        getDataFromFirebase();
+    });
 });
 
 server.listen(PORT, () => {
