@@ -39,13 +39,18 @@ function getLogs() {
         
         console.log(JSON.stringify(snapshot.val()))
 
-        data = snapshot.val()
+        data = JSON.stringify(snapshot.val())
       
-        console.log("data.val()['date']")
-        console.log(data.val()['date'])
-
-        console.log("data.val()['info']")
-        console.log(data.val()['info'])
+        for (const key in data) {
+            if (object.hasOwnProperty('date')) {
+                 console.log(object[key]);
+                
+            }
+            if (object.hasOwnProperty('info')) {
+                console.log(object[key]);
+                
+            }
+        }
         
         
 
