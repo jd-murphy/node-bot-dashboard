@@ -28,33 +28,31 @@ app.get('/dashboard', (req, res) => {
     res.sendFile('index.html',{root: __dirname});
 });
 
-app.get('/api/getLogs', (req, res) => {
-    var db = admin.database();
-    var ref = db.ref("logs");
-    console.log("connecting to firebase!");
-    ref.on("value", function(snapshot) {
-        console.log("HERE IS THE SNAPSHOT FROM FIREBASE ->  ");
+// app.get('/api/getLogs', (req, res) => {
+//     var db = admin.database();
+//     var ref = db.ref("logs");
+//     console.log("connecting to firebase!");
+//     ref.on("value", function(snapshot) {
+//         console.log("HERE IS THE SNAPSHOT FROM FIREBASE ->  ");
         
-        data = snapshot.val()
-        console.log("object.keys -> ")
-        console.log(Object.keys(data))
-        console.log("starting for each key loop -> ")
-        Object.keys(data).forEach(function (key) {
-            console.log("data[key].date")
-            console.log(data[key].date)
-            console.log("data[key].info")
-            console.log(data[key].info)
-          });
+//         data = snapshot.val()
+//         console.log("object.keys -> ")
+//         console.log(Object.keys(data))
+//         console.log("starting for each key loop -> ")
+//         Object.keys(data).forEach(function (key) {
+//             console.log("data[key].date")
+//             console.log(data[key].date)
+//             console.log("data[key].info")
+//             console.log(data[key].info)
+//           });
         
-        console.log("Is this    /api/getLogs     throwing the error? ")
-        console.log("calling      res.send(snapshot.val());    ")
-        res.send(snapshot.val());
-        console.log("calling      res.end();  ")
-        res.end(); 
-        console.log("finished calling    res.end();    ")
-    });
+//         console.log("Is this    /api/getLogs     throwing the error? ")
+//         console.log("calling      res.send(snapshot.val());    ")
+//         res.send(snapshot.val());
+    
+//     });
 
-});
+// });
 
 
 
