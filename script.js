@@ -31,6 +31,7 @@ function getDataFromFirebase() {
         socket.on("notify", function (notification_request) {
             io.emit('notify', JSON.stringify(notification_request));
         });
+    });
 
 
 
@@ -68,7 +69,7 @@ function getDataFromFirebase() {
         });
         
     });
-});
+}
 
 
 module.exports.setUpFirebase = setUpFirebase;
