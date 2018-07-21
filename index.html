@@ -89,10 +89,6 @@
 
 
             <table class="table" id="logTable">
-                <thead>
-                    <th>Date & Time</th>
-                    <th>Log Output</th>
-                </thead>
                 <tbody>
                     
                 </tbody>
@@ -132,13 +128,20 @@
                 var data = JSON.parse(notification); //process notication array
                 // $('#notification-div').append(notifications); //display the notification here which is going to be reflected for all clients
                 $("#logTable tr").remove(); 
+                $('#logTable > tbody:last-child').append('<tr><td>Date & Time</td><td>Log Output</td></tr>');
+                i = 1
                 Object.keys(data).forEach(function (key) {
                         // do something with data[key]
+                        if (i%2 == 0){
+                            $('#logTable > tbody:last-child').append('<tr class="table-dark><td>' + data[key].date + '</td><td>' + data[key].info + '</td></tr>');
+                        } else {
+                            $('#logTable > tbody:last-child').append('<tr class="table-light><td>' + data[key].date + '</td><td>' + data[key].info + '</td></tr>');
+                        }
                         console.log("data[key].date")
                         console.log(data[key].date)
                         console.log("data[key].info")
                         console.log(data[key].info)
-                        $('#logTable > tbody:last-child').append('<tr><td>' + data[key].date + '</td><td>' + data[key].info + '</td></tr>');
+                        i++;
                     });
             });
             
