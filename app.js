@@ -123,14 +123,14 @@ function getDataFromFirebase() {
                 io.emit('notify', JSON.stringify(data));
         
         
-                Object.keys(data).forEach(function (key) {
-                    // do something with data[key]
-                    console.log("data[key].date")
-                    console.log(data[key].date)
-                    console.log("data[key].info")
-                    console.log(data[key].info)
-                    $('#logTable > tbody:last-child').append('<tr><td>' + data[key].date + '</td><td>' + data[key].info + '</td></tr>');
-                });
+                // Object.keys(data).forEach(function (key) {
+                //     // do something with data[key]
+                //     console.log("data[key].date")
+                //     console.log(data[key].date)
+                //     console.log("data[key].info")
+                //     console.log(data[key].info)
+                //     $('#logTable > tbody:last-child').append('<tr><td>' + data[key].date + '</td><td>' + data[key].info + '</td></tr>');
+                // });
                 
             });
         }
