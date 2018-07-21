@@ -106,15 +106,30 @@
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <!-- Latest compiled and minified JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-    <script src="/script.js"></script>
+    
     <script>
 
         $(document).ready(function(){
             console.log("document ready")
             
-            const myModule = require('./script.js');
-            myModule.setUpFirebase();
-            myModule.getDataFromFirebase();
+           
+            var socket = io();
+            // $('button').click(function () { //notify event triggered
+            //     socket.emit('notify', {notification1: "message1", notification2: "message2", notification3: "message3"});
+            //     return false;
+            // });
+            socket.on('notify', function (notification) {
+                var data = JSON.parse(notification); //process notication array
+                // $('#notification-div').append(notifications); //display the notification here which is going to be reflected for all clients
+                Object.keys(data).forEach(function (key) {
+                        // do something with data[key]
+                        console.log("data[key].date")
+                        console.log(data[key].date)
+                        console.log("data[key].info")
+                        console.log(data[key].info)
+                        $('#logTable > tbody:last-child').append('<tr><td>' + data[key].date + '</td><td>' + data[key].info + '</td></tr>');
+                    });
+            });
             
 
 
@@ -133,14 +148,14 @@
             //         console.log(data)
 
 
-            //         Object.keys(data).forEach(function (key) {
-            //             // do something with data[key]
-            //             console.log("data[key].date")
-            //             console.log(data[key].date)
-            //             console.log("data[key].info")
-            //             console.log(data[key].info)
-            //             $('#logTable > tbody:last-child').append('<tr><td>' + data[key].date + '</td><td>' + data[key].info + '</td></tr>');
-            //         });
+                    // Object.keys(data).forEach(function (key) {
+                    //     // do something with data[key]
+                    //     console.log("data[key].date")
+                    //     console.log(data[key].date)
+                    //     console.log("data[key].info")
+                    //     console.log(data[key].info)
+                    //     $('#logTable > tbody:last-child').append('<tr><td>' + data[key].date + '</td><td>' + data[key].info + '</td></tr>');
+                    // });
 
 
 

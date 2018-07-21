@@ -6,6 +6,8 @@ var admin = require('firebase-admin');
 var serviceAccount = process.env.SERVICEACCOUNT
 const PORT = process.env.PORT || 3000;
 
+var fbWorker = require('./script');
+
 
 // config = {
 //     "apiKey": process.env.FIREBASEAPIKEY,
@@ -25,8 +27,12 @@ app.get('/', (req, res) => {
 });
 
 app.get('/dashboard', (req, res) => {
+
     res.sendFile('index.html',{root: __dirname});
+    
 });
+
+
 
 // app.get('/api/getLogs', (req, res) => {
 //     var db = admin.database();
@@ -56,6 +62,8 @@ app.get('/dashboard', (req, res) => {
 
 app.listen(PORT, () => {
     console.log("Listening on port " + PORT);
+    fbWorker.setUpFirebase();
+    fbWorker.getDataFromFirebase();
     // setUpFirebase();
 });
 

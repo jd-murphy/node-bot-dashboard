@@ -1,6 +1,7 @@
 
 
 var admin = require('firebase-admin');
+var io = require('socket.io')(http);
 
 const config = {
     "apiKey": process.env.FIREBASEAPIKEY,
@@ -25,6 +26,14 @@ function setUpFirebase() {
     
 
 function getDataFromFirebase() {
+
+    io.on("connection", function (socket) {
+        socket.on("notify", function (notification_request) {
+            io.emit('notify', JSON.stringify(notification_request));
+        });
+
+
+
     var db = admin.database();
     var ref = db.ref("logs");
     console.log("connecting to firebase!");
@@ -46,6 +55,7 @@ function getDataFromFirebase() {
         data = JSON.parse(data)
         console.log("/getLogs data ->")
         console.log(data)
+        io.emit('notify', JSON.stringify(data));
 
 
         Object.keys(data).forEach(function (key) {
