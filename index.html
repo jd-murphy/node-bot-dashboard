@@ -117,6 +117,7 @@
                 async: false,
                 success: function(data) {
                 
+                    data = JSON.parse(data)
                     console.log("/getLogs data ->")
                     console.log(data)
 
