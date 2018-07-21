@@ -35,7 +35,6 @@
                     <div class="row">
                             <div class="col-md-4">
                                 <div class="card border-success mb-3"> 
-                                        <!-- style="max-width: 25rem;" -->
                                         <div class="card-header">@GymHelper</div>
                                         <div class="card-body">
                                             <h4 class="card-title">Online</h4>
@@ -94,10 +93,8 @@
                     <th>Log Output</th>
                 </thead>
                 <tbody>
-                    
                 </tbody>
             </table>
-
 
 
         </div>
@@ -110,77 +107,28 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
     <script src="/socket.io/socket.io.js"></script>
     <script>
-
         $(document).ready(function(){
             console.log("document ready")
             
-
-
             $("#loadLogs").click(function(){
                 socket.emit('load');
             });
            
-           
             var socket = io();
-            // $('button').click(function () { //notify event triggered
-            //     socket.emit('notify', {notification1: "message1", notification2: "message2", notification3: "message3"});
-            //     return false;
-            // });
             socket.on('notify', function (notification) {
                 console.log('SOCKET on Notify!      ( index.html )   ')
-                
                 var data = JSON.parse(notification); //process notication array
-                // $('#notification-div').append(notifications); //display the notification here which is going to be reflected for all clients
                 $("#logTable tbody tr").remove(); 
-       
                 Object.keys(data).forEach(function (key) {
                         // do something with data[key]
                         console.log("data[key].date")
                         console.log(data[key].date)
                         console.log("data[key].info")
                         console.log(data[key].info)
-                   
                         $('#logTable > tbody:last-child').append('<tr class="table-active"><td>' + data[key].date + '</td><td>' + data[key].info + '</td></tr>');
-                        
                     });
             });
-            
-
-
-
-
-
-
-            // $.ajax({
-            //     type: 'GET',
-            //     url: '/api/getLogs',
-            //     async: true,
-            //     success: function(data) {
-                    
-            //         data = JSON.parse(data)
-            //         console.log("/getLogs data ->")
-            //         console.log(data)
-
-
-                    // Object.keys(data).forEach(function (key) {
-                    //     // do something with data[key]
-                    //     console.log("data[key].date")
-                    //     console.log(data[key].date)
-                    //     console.log("data[key].info")
-                    //     console.log(data[key].info)
-                    //     $('#logTable > tbody:last-child').append('<tr><td>' + data[key].date + '</td><td>' + data[key].info + '</td></tr>');
-                    // });
-
-
-
-            //     }
-            // });
-        
-        
         });
-
-       
-            
     </script>
   </body>
 </html>
