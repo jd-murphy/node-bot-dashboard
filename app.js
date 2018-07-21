@@ -17,6 +17,8 @@ app.get('/dashboard', (req, res) => {
 
 app.get('/getLogs', async (req, res) => {
     data = await firebaseWorker.getLogs()
+    console.log("Data is -> ")
+    console.log(data)
     res.send(data);
 });
 
