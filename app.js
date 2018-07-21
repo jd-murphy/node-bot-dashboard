@@ -26,9 +26,10 @@ app.get('/', (req, res) => {
 
 app.get('/dashboard', (req, res) => {
     res.sendFile('index.html',{root: __dirname});
+    res.end();
 });
 
-app.get('/getLogs', (req, res) => {
+app.get('/api/getLogs', (req, res) => {
     var db = admin.database();
     var ref = db.ref("logs");
     console.log("connecting to firebase!");
@@ -47,7 +48,7 @@ app.get('/getLogs', (req, res) => {
           });
         
          res.send(snapshot.val());
-    
+         res.end(); 
     });
     
 });
