@@ -2,11 +2,12 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const fs = require('fs');
 const app = express();
+var server = require('http').createServer(app);
 var admin = require('firebase-admin');
 var serviceAccount = process.env.SERVICEACCOUNT
 const PORT = process.env.PORT || 3000;
 var admin = require('firebase-admin');
-var io = require('socket.io')(app);
+var io = require('socket.io')(server);
 
 const config = {
     "apiKey": process.env.FIREBASEAPIKEY,
@@ -69,9 +70,13 @@ app.get('/dashboard', (req, res) => {
 
 // });
 
+io.on("connection", function (socket) {
+    socket.on("notify", function (notification_request) {
+        io.emit('notify', JSON.stringify(notification_request));
+    });
+});
 
-
-app.listen(PORT, () => {
+server.listen(PORT, () => {
     console.log("Listening on port " + PORT);
     setUpFirebase();
     getDataFromFirebase();
@@ -89,16 +94,11 @@ function setUpFirebase() {
         }
 
 
-        function getDataFromFirebase() {
 
-            io.on("connection", function (socket) {
-                socket.on("notify", function (notification_request) {
-                    io.emit('notify', JSON.stringify(notification_request));
-                });
-            });
-        
-        
-        
+
+
+
+function getDataFromFirebase() {
             var db = admin.database();
             var ref = db.ref("logs");
             console.log("connecting to firebase!");
