@@ -32,7 +32,7 @@ function getLogs() {
     var ref = db.ref("logs");
     console.log("connecting to firebase!");
     // Attach an asynchronous callback to read the data at our posts reference
-    ref.on("value", function(snapshot) {
+    ref.on("value", async function(snapshot) {
         console.log("HERE IS THE SNAPSHOT FROM FIREBASE ->  ");
         
         data = snapshot.val()
@@ -49,7 +49,7 @@ function getLogs() {
             console.log(data[key].info)
           });
         
-        return data;
+        return await data;
         
 
 
