@@ -36,11 +36,17 @@ function getLogs() {
     ref.on("value", function(snapshot) {
         console.log("HERE IS THE SNAPSHOT FROM FIREBASE ->  ");
         
+        data = snapshot.val()
         
-        console.log(JSON.stringify(snapshot.val()))
+        // console.log(JSON.stringify(snapshot.val()))
         console.log("object.keys -> ")
-        console.log(Object.keys(snapshot.val()))
-
+        console.log(Object.keys(data))
+        console.log("starting for each key loop -> ")
+        Object.keys(data).forEach(function (key) {
+            // do something with data[key]
+            console.log("data[key]")
+            console.log(data[key])
+          });
         
         
         
