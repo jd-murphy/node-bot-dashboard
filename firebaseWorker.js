@@ -17,7 +17,7 @@ config = {
 
 function setUpServiceAccountFile() {
     console.log("setUpServiceAccountFile()")
-    fs.writeFile(process.env.SAPATH, process.env.SERVICEACCOUNT, function(err) {
+    fs.writeFile(process.env.SAPATH, process.env.SERVICEACCOUNT,  'utf8', function(err) {
         console.log("writing file...")
         if(err) {
             console.log("ERROR writing file!!!")
