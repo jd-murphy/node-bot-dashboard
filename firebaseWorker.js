@@ -35,7 +35,8 @@ function getLogs() {
     // Attach an asynchronous callback to read the data at our posts reference
     ref.on("value", function(snapshot) {
         console.log("HERE IS THE SNAPSHOT FROM FIREBASE ->  ");
-        snapshot.val().forEach(element => {
+        data = snapshot.val()
+        data.forEach(element => {
             console.log(element.date)
             console.log(element.info)
         });
