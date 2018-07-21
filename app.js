@@ -3,7 +3,7 @@ const bodyParser = require('body-parser');
 const fs = require('fs');
 const app = express();
 const PORT = process.env.PORT || 3000;
-const firebaseWorker = require('firebaseWorker.js')
+const firebaseWorker = require('./firebaseWorker')
 
 
 app.use(bodyParser.json());
