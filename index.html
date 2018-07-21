@@ -110,20 +110,30 @@
 
         $(document).ready(function(){
             console.log("document ready")
-            $.get('/getLogs', function(data){
-                console.log("/getLogs data ->")
-                console.log(data)
+            
+            $.ajax({
+                type: 'GET',
+                url: '/getLogs',
+                success: function(data) {
+                
+                    console.log("/getLogs data ->")
+                    console.log(data)
 
 
-                Object.keys(data.dataz).forEach(function (key) {
-                    // do something with data[key]
-                    console.log("data[key].date")
-                    console.log(data[key].date)
-                    console.log("data[key].info")
-                    console.log(data[key].info)
-                    $('#logTable > tbody:last-child').append('<tr><td>' + data[key].date + '</td><td>' + data[key].info + '</td></tr>');
-                });
-            })
+                    Object.keys(data.dataz).forEach(function (key) {
+                        // do something with data[key]
+                        console.log("data[key].date")
+                        console.log(data[key].date)
+                        console.log("data[key].info")
+                        console.log(data[key].info)
+                        $('#logTable > tbody:last-child').append('<tr><td>' + data[key].date + '</td><td>' + data[key].info + '</td></tr>');
+                    });
+
+
+
+                }
+            });
+        
         
         });
             
