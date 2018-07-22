@@ -112,9 +112,20 @@
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <!-- Latest compiled and minified JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-    <script type="text/javascript" src="node_modules/fusioncharts/fusioncharts.js"></script>
-    <script type="text/javascript" src="node_modules/fusioncharts/fusioncharts.charts.js"></script>
-    <script type="text/javascript" src="node_modules/fusioncharts/fusioncharts.powercharts.js"> </script>
+    
+    <script type="text/javascript" src="fusionCharts/fusioncharts.js"></script>
+    <script type="text/javascript" src="fusionCharts/fusioncharts.theme.fint.js"></script>
+  
+    <!-- <script type="text/javascript" src="node_modules/fusioncharts/fusioncharts.js"></script> -->
+    <!-- <script type="text/javascript" src="node_modules/fusioncharts/fusioncharts.js"></script> -->
+
+    <!-- <script type="text/javascript" src="node_modules/fusioncharts/fusioncharts.charts.js"></script> -->
+    <!-- <script type="text/javascript" src="node_modules/fusioncharts/fusioncharts.charts.js"></script> -->
+
+    <!-- <script type="text/javascript" src="node_modules/fusioncharts/fusioncharts.powercharts.js"> </script> -->
+    <!-- <script type="text/javascript" src="node_modules/fusioncharts/fusioncharts.powercharts.js"> </script> -->
+
+
     
     <!-- <script src="node_modules/fusioncharts/fusioncharts.fusionwidgets.js"> </script> -->
     <!--  list of which chart is in which package at this url ->   https://www.fusioncharts.com/dev/chart-guide/getting-started/list-of-charts -->
@@ -163,47 +174,75 @@
 
 
 
-            FusionCharts.ready(function () {
-                // Create a new instance of FusionCharts for rendering inside an HTML
-                // `<div>` element with id `my-chart-container`.
-                var myChart = new FusionCharts({
-                    type: 'column2d',
-                    renderAt: 'chartContainer',
+          FusionCharts.ready(function() {
+            var revenueChart = new FusionCharts({
+                "type": "column2d",
+                "renderAt": "chartContainer",
+                "width": "500",
+                "height": "300",
+                "dataFormat": "json",
+                "dataSource": {
+                    "chart": {
+                        "caption": "Monthly revenue for last year",
+                        "subCaption": "Harry's SuperMart",
+                        "xAxisName": "Month",
+                        "yAxisName": "Revenues (In USD)",
+                        "theme": "fint"
+                    },
+                    "data": [{
+                            "label": "Jan",
+                            "value": "420000"
+                        },
+                        {
+                            "label": "Feb",
+                            "value": "810000"
+                        },
+                        {
+                            "label": "Mar",
+                            "value": "720000"
+                        },
+                        {
+                            "label": "Apr",
+                            "value": "550000"
+                        },
+                        {
+                            "label": "May",
+                            "value": "910000"
+                        },
+                        {
+                            "label": "Jun",
+                            "value": "510000"
+                        },
+                        {
+                            "label": "Jul",
+                            "value": "680000"
+                        },
+                        {
+                            "label": "Aug",
+                            "value": "620000"
+                        },
+                        {
+                            "label": "Sep",
+                            "value": "610000"
+                        },
+                        {
+                            "label": "Oct",
+                            "value": "490000"
+                        },
+                        {
+                            "label": "Nov",
+                            "value": "900000"
+                        },
+                        {
+                            "label": "Dec",
+                            "value": "730000"
+                        }
+                    ]
+                }
 
-                    dataFormat: 'json',
-                    dataSource: {
-                        chart: {
-                            caption: "Harry's SuperMart",
-                            subCaption: "Top 5 stores in last month by revenue",
-                        },
-                        data:[{
-                            label: "Bakersfield Central",
-                            value: "880000"
-                        },
-                        {
-                            label: "Garden Groove harbour",
-                            value: "730000"
-                        },
-                        {
-                            label: "Los Angeles Topanga",
-                            value: "590000"
-                        },
-                        {
-                            label: "Compton-Rancho Dom",
-                            value: "520000"
-                        },
-                        {
-                            label: "Daly City Serramonte",
-                            value: "330000"
-                        }]
-                    }
-                });
-
-                // Render the chart.
-                myChart.render();
             });
-
-
+            revenueChart.render();
+        })
            
 
 
