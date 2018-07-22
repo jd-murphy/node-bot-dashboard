@@ -37,7 +37,7 @@ app.get('/api/bot-report', (req, res) => {
     print("printing req ->")
     print(str(req))
     io.emit('botAlert', 'testing!!!');
-    res.send({status: "received" });
+    res.send("/api/bot-report has received your request!");
 });
 
 
