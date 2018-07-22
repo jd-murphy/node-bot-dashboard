@@ -176,21 +176,24 @@
 
 
         
-        var data = {
-        // A labels array that can contain any sort of values
-        labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri'],
-        // Our series array that contains series objects or in this case series data arrays
-        series: [
-            [5, 2, 4, 2, 0]
-        ]
-        };
-
-        // Create a new line chart object where as first parameter we pass in a selector
-        // that is resolving to our chart container element. The Second parameter
-        // is the actual data object.
-        new Chartist.Line('.ct-chart', data);
-
-           
+        var chart = new Chartist.Line('.ct-chart', {
+                labels: [1, 2, 3, 4, 5],
+                series: [
+                    [1, 5, 10, 0, 1],
+                    [10, 15, 0, 1, 2]
+                ]
+                }, {
+                // Remove this configuration to see that chart rendered with cardinal spline interpolation
+                // Sometimes, on large jumps in data values, it's better to use simple smoothing.
+                lineSmooth: Chartist.Interpolation.simple({
+                    divisor: 2
+                }),
+                fullWidth: true,
+                chartPadding: {
+                    right: 20
+                },
+                low: 0
+            });
 
 
 
