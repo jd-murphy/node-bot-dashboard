@@ -42,7 +42,7 @@ io.on("connection", function (socket) {
 });
 
 app.get('/api/bot-report', (req, res) => {
-    io.emit('botAlert', 'testing!!!');
+    io.emit('botAlert', req.query);
     res.send("/api/bot-report has received your request!");
 });
 
