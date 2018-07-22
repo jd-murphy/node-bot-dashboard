@@ -32,15 +32,6 @@ app.get('/dashboard', (req, res) => {
     res.sendFile('index.html',{root: __dirname});
 });
 
-app.get('/botreport', (req, res) => {
-    console.log("app.get('/api/bot-report')");
-    console.log("printing req ->");
-    console.log(str(req));
-    io.emit('botAlert', 'testing!!!');
-    res.send("/api/bot-report has received your request!");
-});
-
-
 io.on("connection", function (socket) {
     socket.on("loadLogData", function (notification_request) {
         getLogDataFromFirebase();
@@ -48,6 +39,14 @@ io.on("connection", function (socket) {
     // socket.on("onYourEvent", function (notification_request) {   // set up new events like this
     //     respondToEvent();
     // });
+});
+
+app.get('/api/bot-report', (req, res) => {
+    console.log("app.get('/api/bot-report')");
+    console.log("printing req ->");
+    console.log(str(req));
+    io.emit('botAlert', 'testing!!!');
+    res.send("/api/bot-report has received your request!");
 });
 
 
