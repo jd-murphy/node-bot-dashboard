@@ -155,12 +155,8 @@
                         console.log("data[key].user")
                         console.log(data[key].user)
                         // $('#logTable > tbody:last-child').append('<tr class="table-active"><td>' + data[key].date + '</td><td>' + data[key].info + '</td></tr>');
-                        
-                        
-                        updateChart();
-
-
                     });
+                    updateChart();
             });
 
 
@@ -203,7 +199,7 @@
             points.push(newNumber);
             console.log(points);
 
-            chart.update(points);
+            chart.update({series: points});
         }
 
 
