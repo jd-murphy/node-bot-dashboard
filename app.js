@@ -32,7 +32,7 @@ app.get('/dashboard', (req, res) => {
     res.sendFile('index.html',{root: __dirname});
 });
 
-app.get('/api/botreport', (req, res) => {
+app.get('/botreport', (req, res) => {
     console.log("app.get('/api/bot-report')");
     console.log("printing req ->");
     console.log(str(req));
