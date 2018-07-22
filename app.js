@@ -44,9 +44,9 @@ io.on("connection", function (socket) {
     socket.on("loadLogData", function (notification_request) {
         getLogDataFromFirebase();
     });
-    socket.on("loadPinData", function (notification_request) {
-        getPinDataFromFirebase();
-    });
+    // socket.on("loadPinData", function (notification_request) {
+    //     getPinDataFromFirebase();
+    // });
     
 });
 
@@ -54,6 +54,7 @@ io.on("connection", function (socket) {
 server.listen(PORT, () => {
     console.log("Listening on port " + PORT);
     setUpFirebase();
+    getPinDataFromFirebase()
 });
 
 

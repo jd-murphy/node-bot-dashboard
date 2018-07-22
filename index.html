@@ -123,9 +123,7 @@
             $("#loadLogs").click(function(){
                 socket.emit('loadLogData');
             });
-            $("#loadPins").click(function(){
-                socket.emit('loadPinData');
-            });
+           
            
             var socket = io();
             socket.on('notify', function (notification) {
