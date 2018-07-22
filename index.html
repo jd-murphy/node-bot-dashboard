@@ -143,12 +143,12 @@
             });
 
             socket.on('pinDataUpdate', function (notification) {
-                console.log('SOCKET on pinDataUpdate!      ( index.html )   ')
+                console.log('SOCKET on pinDataUpdate!      ( index.html )   ');
                 var data = JSON.parse(notification); //process notication array
 
 
-                        console.log("data")
-                        console.log(data)
+                        console.log("data");
+                        console.log(data);
                         
                 // //TESTING
                 // // $("#logTable tbody tr").remove(); 
@@ -199,20 +199,20 @@
             });
 
         function updateChart(){
-            console.log("points at beginning -> ");
-            console.log(points);
+            // console.log("points at beginning -> ");
+            // console.log(points);
 
             newNumber = Math.floor(Math.random() * (15));
-            console.log("new number -> ");
-            console.log(newNumber);
+            // console.log("new number -> ");
+            // console.log(newNumber);
 
-            console.log("shift points -> ");
+            // console.log("shift points -> ");
             points.shift();
-            console.log(points);
+            // console.log(points);
             
-            console.log("push new number -> ");
+            // console.log("push new number -> ");
             points.push(newNumber);
-            console.log(points);
+            // console.log(points);
 
             newData = []
             newData.push(points)
