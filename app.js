@@ -32,6 +32,10 @@ app.get('/dashboard', (req, res) => {
     res.sendFile('index.html',{root: __dirname});
 });
 
+app.get('/api/bot-websocket', (req, res) => {
+    io.emit('botAlert', 'testing!!!');
+});
+
 
 io.on("connection", function (socket) {
     socket.on("loadLogData", function (notification_request) {
