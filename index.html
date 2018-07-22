@@ -47,8 +47,8 @@
                                             <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
                                         </div>
                                     </div>
-                                <button type="button" class="btn btn-success" id="loadLogs">Load Logs</button>
-                                <button type="button" class="btn btn-success" id="loadPins">Load Pin Data</button>
+                             
+                                
                             </div>
                             <div class="col-md-8">
                                 <div class="ct-chart ct-major-tenth"></div>
@@ -120,9 +120,7 @@
         $(document).ready(function(){
             console.log("document ready")
             
-            $("#loadLogs").click(function(){
-                socket.emit('loadLogData');
-            });
+           
            
            
             var socket = io();
@@ -222,7 +220,7 @@
 
 
 
-
+            socket.emit('loadLogData');
         });
     </script>
   </body>
