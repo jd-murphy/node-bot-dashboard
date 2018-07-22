@@ -34,14 +34,14 @@
                     <div class="row">
                             <div class="col-md-4">
                                 <div class="card border-success mb-3"> 
-                                        <div class="card-header">@GymHelper</div>
+                                        <div class="card-header">@GymHelper <span id="gymHelperBadge" class="badge badge-pill badge-light">Success</span></div>
                                         <div class="card-body">
                                             <h4 class="card-title">Online</h4>
                                             <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
                                         </div>
                                     </div>
                                 <div class="card border-danger mb-3">
-                                        <div class="card-header">@ExRaidBot</div>
+                                        <div class="card-header">@ExRaidBot <span id="exRaidBotBadge" class="badge badge-pill badge-light">Success</span></div>
                                         <div class="card-body">
                                             <h4 class="card-title">Crashed</h4>
                                             <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
@@ -167,6 +167,20 @@
             socket.on('botAlert', function (notification) {
                 console.log('botAlert!    (index.html)   ->')
                 console.log(notification);
+
+                    // gymHelperBadge
+                    // exRaidBotBadge
+                    if ( $('#exRaidBotBadge').hasClass('badge-light')) {
+                        $('#exRaidBotBadge').removeClass('badge-light')
+                        $('#exRaidBotBadge').addClass('badge-success')
+                    } else {
+                        $('#exRaidBotBadge').removeClass('badge-light')
+                        $('#exRaidBotBadge').addClass('badge-success')
+                    }
+                   
+                    // badge-success
+                    // badge-light
+
             });
 
 
