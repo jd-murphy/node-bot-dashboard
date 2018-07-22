@@ -199,7 +199,9 @@
             points.push(newNumber);
             console.log(points);
 
-            chart.update({series: points});
+            newData = []
+            newData.push(points)
+            chart.update({series: newData});
         }
 
 
