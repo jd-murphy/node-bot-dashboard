@@ -34,12 +34,12 @@ app.get('/dashboard', (req, res) => {
 
 
 io.on("connection", function (socket) {
-    socket.on("notify", function (notification_request) {
-        // io.emit('notify', JSON.stringify(notification_request));
-    });
-    socket.on("pinDataUpdate", function (notification_request) {
-        // io.emit('pinDataUpdate', JSON.stringify(notification_request));
-    });
+    // socket.on("notify", function (notification_request) {
+    //     // io.emit('notify', JSON.stringify(notification_request));
+    // });
+    // socket.on("pinDataUpdate", function (notification_request) {
+    //     // io.emit('pinDataUpdate', JSON.stringify(notification_request));
+    // });
     socket.on("loadLogData", function (notification_request) {
         getLogDataFromFirebase();
     });
