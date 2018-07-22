@@ -13,8 +13,7 @@
     <!-- Optional theme -->
     <link href="https://stackpath.bootstrapcdn.com/bootswatch/4.1.2/slate/bootstrap.min.css" rel="stylesheet" integrity="sha384-fSVTHAcdTrW2AQFxwcv4yRDyQdnteeIOLhHrrKIO4xTLK+JrplIISHbIHvfcYEKK" crossorigin="anonymous">
     
-    <script type="text/html" src="fusionCharts/fusioncharts.js"></script>
-    <script type="text/html" src="fusionCharts/fusioncharts.theme.fint.js"></script>
+    
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -104,7 +103,7 @@
 
 
 
-            <div id="chartContainer">FusionCharts XT will load here!</div>
+           
    
         </div>
 
@@ -175,83 +174,7 @@
 
 
 
-          FusionCharts.ready(function() {
-            var revenueChart = new FusionCharts({
-                "type": "column2d",
-                "renderAt": "chartContainer",
-                "width": "500",
-                "height": "300",
-                "dataFormat": "json",
-                "dataSource": {
-                    "chart": {
-                        "caption": "Monthly revenue for last year",
-                        "subCaption": "Harry's SuperMart",
-                        "xAxisName": "Month",
-                        "yAxisName": "Revenues (In USD)",
-                        "theme": "fint"
-                    },
-                    "data": [{
-                            "label": "Jan",
-                            "value": "420000"
-                        },
-                        {
-                            "label": "Feb",
-                            "value": "810000"
-                        },
-                        {
-                            "label": "Mar",
-                            "value": "720000"
-                        },
-                        {
-                            "label": "Apr",
-                            "value": "550000"
-                        },
-                        {
-                            "label": "May",
-                            "value": "910000"
-                        },
-                        {
-                            "label": "Jun",
-                            "value": "510000"
-                        },
-                        {
-                            "label": "Jul",
-                            "value": "680000"
-                        },
-                        {
-                            "label": "Aug",
-                            "value": "620000"
-                        },
-                        {
-                            "label": "Sep",
-                            "value": "610000"
-                        },
-                        {
-                            "label": "Oct",
-                            "value": "490000"
-                        },
-                        {
-                            "label": "Nov",
-                            "value": "900000"
-                        },
-                        {
-                            "label": "Dec",
-                            "value": "730000"
-                        }
-                    ]
-                }
-
-            });
-            revenueChart.render();
-        })
-           
-
-
-
-
-
-
-
+        
 
 
            
