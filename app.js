@@ -34,20 +34,12 @@ app.get('/dashboard', (req, res) => {
 
 
 io.on("connection", function (socket) {
-    // socket.on("notify", function (notification_request) {
-    //     // io.emit('notify', JSON.stringify(notification_request));
-    // });   
-    // socket.on("pinDataUpdate", function (notification_request) {
-    //     // io.emit('pinDataUpdate', JSON.stringify(notification_request));
-    //     console.log("socket on -> pinDataUpdate       Running on server")
-    // });
     socket.on("loadLogData", function (notification_request) {
         getLogDataFromFirebase();
     });
-    // socket.on("loadPinData", function (notification_request) {
-    //     getPinDataFromFirebase();
+    // socket.on("onYourEvent", function (notification_request) {   // set up new events like this
+    //     respondToEvent();
     // });
-    
 });
 
 
