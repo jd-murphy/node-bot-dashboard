@@ -173,10 +173,13 @@
                     if ( $('#exRaidBotBadge').hasClass('badge-light')) {
                         $('#exRaidBotBadge').removeClass('badge-light')
                         $('#exRaidBotBadge').addClass('badge-success')
-                    } else {
-                        $('#exRaidBotBadge').removeClass('badge-success')
-                        $('#exRaidBotBadge').addClass('badge-light')
-                    }
+                    } 
+                    window.setTimeout(function() {
+                        if ( $('#exRaidBotBadge').hasClass('badge-success')) {
+                            $('#exRaidBotBadge').removeClass('badge-success')
+                            $('#exRaidBotBadge').addClass('badge-light')
+                        }
+                    }, 2000)
                    
                     // badge-success
                     // badge-light
