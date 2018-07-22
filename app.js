@@ -32,7 +32,10 @@ app.get('/dashboard', (req, res) => {
     res.sendFile('index.html',{root: __dirname});
 });
 
-app.get('/api/bot-websocket', (req, res) => {
+app.get('/api/bot-report', (req, res) => {
+    print("app.get('/api/bot-report')")
+    print("printing req ->")
+    print(str(req))
     io.emit('botAlert', 'testing!!!');
 });
 
