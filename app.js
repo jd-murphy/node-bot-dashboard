@@ -24,12 +24,12 @@ app.use(bodyParser.json());
 
 
 app.get('/', (req, res) => {
-    res.send("Node server live!");
+    res.send("Error 404: Hmmmm, Sorry, I can't find the page you're looking for. Maybe you meant http://bit.ly/EXRaidsBCS ?");
 });
 
 
 app.get('/ex-raid-sign-up', (req, res) => {
-    res.send("This is for signing up for ex raids!!");
+    res.sendFile('ex.html',{root: __dirname});
 });
 
 
