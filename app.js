@@ -28,6 +28,11 @@ app.get('/', (req, res) => {
 });
 
 
+app.get('/ex-raid-sign-up', (req, res) => {
+    res.send("This is for signing up for ex raids!!");
+});
+
+
 app.get('/dashboard', (req, res) => {
     res.sendFile('index.html',{root: __dirname});
 });
