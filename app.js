@@ -57,7 +57,7 @@ app.post('/ex-raid-form', (req, res) => {
     
 
    
-    discord.sendMessage(dataWH);
+    discord.sendMessage(req.body.ssUpload);
     
     res.sendFile('thanks.html',{root: __dirname});
 
