@@ -24,6 +24,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded());
 app.use('/images/', express.static('./images'));
 
+
 app.get('/', (req, res) => {
     res.send("Error 404: Hmmmm, Sorry, I can't find the page you're looking for. Maybe you meant http://bit.ly/EXRaidsBCS ?");
 });
