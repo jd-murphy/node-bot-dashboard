@@ -125,11 +125,11 @@ function pushToFirebase(data) {
     var db = admin.database();
     var ref = db.ref("ex_ocr_testing");
     uploadPacket = {
-        "dateUploaded": new Date().toUTCString(), // note this may not match the python format nicely, might need to change this
+        "dateUploaded": new Date().toUTCString(), // this does not match the python format,  need to change this
         "discord_name": data.trainerName,
         "team": data.team,
         "gym_name": data.gymName,
-        "date_extracted": data.dateInput,
+        "date_extracted": data.dateInput, // this does not match the screenshot format,  need to change this
         "unprocessed_image_to_string": "No screenshot porcessed - Link sign up",
         "image_url": "No URL - Link sign up",
         "preferredStartTime": data.startTime
