@@ -128,8 +128,8 @@ function pushToFirebase(data) {
         "dateUploaded": new Date(),
         "discord_name": data.trainerName,
         "team": data.team,
-        "gym_name": data.gym_name,
-        "date_extracted": data.date,
+        "gym_name": data.gymName,
+        "date_extracted": data.dateInput,
         "unprocessed_image_to_string": "No screenshot porcessed - Link sign up",
         "image_url": "No URL - Link sign up",
         "preferredStartTime": data.startTime
