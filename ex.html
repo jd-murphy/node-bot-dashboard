@@ -40,20 +40,32 @@
                                             
                                             <legend>Please fill in your information.</legend>
                                                 
-                                        <form method="POST" action="/ex-raid-form">
+                                        <form class="needs-validation" method="POST" action="/ex-raid-form" novalidate>
 
 
 
                                             <div class="form-group">
                                                 <label class="col-form-label" for="trainerName">Pokemon Go Trainer Name</label>
-                                                <input type="text" class="form-control" placeholder="Pokemon Go Trainer Name" id="trainerName" name="trainerName">
+                                                <input type="text" class="form-control" placeholder="Pokemon Go Trainer Name" id="trainerName" name="trainerName" required>
+                                                <div class="valid-feedback">
+                                                        Looks good!
+                                                      </div>
+                                                      <div class="invalid-feedback">
+                                                            Please choose a username.
+                                                          </div>
                                             </div>
 
 
 
                                             <div class="form-group">
                                                 <label class="col-form-label" for="gymName">Gym Name</label>
-                                                <input type="text" class="form-control" placeholder="Gym Name" id="gymName" name="gymName">
+                                                <input type="text" class="form-control" placeholder="Gym Name" id="gymName" name="gymName" required>
+                                                <div class="valid-feedback">
+                                                        Looks good!
+                                                      </div>
+                                                      <div class="invalid-feedback">
+                                                            Please choose a username.
+                                                          </div>
                                             </div>
                                 
 
@@ -61,12 +73,18 @@
                                             
                                             <div class="form-group">
                                             <label class="col-form-label" for="team">Choose your team</label>
-                                            <select class="custom-select" id="team" name="team">
+                                            <select class="custom-select" id="team" name="team" required>
                                                 <option selected="">Choose your team:</option>
                                                 <option value="Mystic">Mystic</option>
                                                 <option value="Instinct">Instinct</option>
                                                 <option value="Valor">Valor</option>
                                             </select>
+                                            <div class="valid-feedback">
+                                                    Looks good!
+                                                  </div>
+                                                  <div class="invalid-feedback">
+                                                        Please choose a username.
+                                                      </div>
                                             </div>
                                 
 
@@ -75,8 +93,14 @@
                                             <div class="form-group">
                                                 <label class="col-form-label" for="date">Date of EX Raid</label>
                                                 <div class="input-group date" id="date">
-                                                    <input type="text" class="form-control" id="dateInput" name="dateInput">            
+                                                    <input type="text" class="form-control" id="dateInput" name="dateInput" required>            
                                                 </div>
+                                                <div class="valid-feedback">
+                                                        Looks good!
+                                                      </div>
+                                                      <div class="invalid-feedback">
+                                                            Please choose a username.
+                                                          </div>
                                             </div>
                                                   
                                            
@@ -112,6 +136,21 @@
                         startDate: '-1d',
                         endDate: '+30d'
                     });
+
+                    window.addEventListener('load', function() {
+                    // Fetch all the forms we want to apply custom Bootstrap validation styles to
+                    var forms = document.getElementsByClassName('needs-validation');
+                    // Loop over them and prevent submission
+                    var validation = Array.prototype.filter.call(forms, function(form) {
+                    form.addEventListener('submit', function(event) {
+                        if (form.checkValidity() === false) {
+                        event.preventDefault();
+                        event.stopPropagation();
+                        }
+                        form.classList.add('was-validated');
+                    }, false);
+                    });
+                }, false);
             });
                 
 
