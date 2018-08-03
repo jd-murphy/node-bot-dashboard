@@ -126,7 +126,7 @@ function pushToFirebase(data) {
     var ref = db.ref("ex_ocr_testing");
     uploadPacket = {
         "dateUploaded": new Date(),
-        "discord_name": body.trainerName,
+        "discord_name": data.trainerName,
         "team": data.team,
         "gym_name": data.gym_name,
         "date_extracted": data.date,
