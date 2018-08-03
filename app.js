@@ -48,6 +48,8 @@ app.post('/ex-raid-form', (req, res) => {
     console.log(req.body.team)
     console.log("req.body.dateInput:")
     console.log(req.body.dateInput)
+    console.log("req.body.startTime:")
+    console.log(req.body.startTime)
 
 
     res.sendFile('thanks.html',{root: __dirname});
