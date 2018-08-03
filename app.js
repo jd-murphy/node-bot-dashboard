@@ -155,7 +155,7 @@ function checkFormData(body) {
     console.log("body.startTime:")
     console.log(body.startTime)
 
-    print("\n\nNEED TO IMPLEMENT THIS DATA VALIDATION!!!!!!!!!     app.js   checkFormData()\n\n")
+    console.log("\n\nNEED TO IMPLEMENT THIS DATA VALIDATION!!!!!!!!!     app.js   checkFormData()\n\n")
 
     return true
 }
