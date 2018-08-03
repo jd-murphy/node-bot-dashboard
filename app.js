@@ -55,16 +55,18 @@ app.post('/ex-raid-form', (req, res) => {
     // https://discordapp.com/api/webhooks/475007520583319562/wse9pfdMt5QCtP9ZCZ-duVbrV2bpD6iBrshXSkyNMvWSpFzKK473XC96KDyC1zqzdzrt
     var busboy = new Busboy({ headers: req.headers });
     busboy.on('file', function(fieldname, file, filename, encoding, mimetype) {
+        console.log("on file!")
         // var saveTo = path.join('.', filename);
         // console.log('Uploading: ' + saveTo);
         // file.pipe(fs.createWriteStream(saveTo));
+        
         discord.sendMessage(file);
     });
     busboy.on('finish', function() {
         console.log('Upload complete');
         // res.writeHead(200, { 'Connection': 'close' });
         // res.end("That's all folks!");
-        res.sendFile('thanks.html',{root: __dirname});
+        
     });
     
 
@@ -73,7 +75,7 @@ app.post('/ex-raid-form', (req, res) => {
 
 
     
-
+    res.sendFile('thanks.html',{root: __dirname});
 
     
     // res.sendFile('thanks.html',{root: __dirname});
