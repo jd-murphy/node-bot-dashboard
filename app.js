@@ -64,8 +64,8 @@ app.post('/ex-raid-form', upload.single('ssUpload'), (req, res) => {
        
         
 
-        sendMessage(req.file)
-        // discord.sendMessage(fs.readFileSync(req.file.path));
+        
+        discord.sendMessage(req.file.path);
 
       }
    
@@ -191,35 +191,3 @@ function checkFormData(body, cb) {
 
 
 
-
-function sendMessage(msg) {
-    var querystring = require('querystring');
-    var https = require('https');
-
-    data = {
-        'content':msg,
-        'username':this.userName,
-        'avatar_url':this.avatarUrl
-    };
-
-    postBody = querystring.stringify(data);
-
-
-    var imType = msg.mimetype
-
-
-    options = {
-        hostname: 'canary.discordapp.com',
-        port: 443,
-        path: '/api/webhooks/475007520583319562/wse9pfdMt5QCtP9ZCZ-duVbrV2bpD6iBrshXSkyNMvWSpFzKK473XC96KDyC1zqzdzrt',
-        method: 'POST',
-        headers : {
-            'Content-Type': imType
-        }
-    };
-
-    var postreq = https.request(options);
-
-    postreq.write(postBody);
-    postreq.end();
-}
