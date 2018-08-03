@@ -156,6 +156,6 @@ function checkFormData(body, cb) {
     console.log(body.startTime)
 
     console.log("\n\nNEED TO IMPLEMENT THIS DATA VALIDATION!!!!!!!!!     app.js   checkFormData()\n\n")
-    cb();
-    return true
+    cb(true);
+
 }
