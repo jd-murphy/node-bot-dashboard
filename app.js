@@ -132,7 +132,7 @@ function pushToFirebase(data) {
         "date_extracted": data.dateInput, // this does not match the screenshot format,  need to change this
         "unprocessed_image_to_string": "No screenshot porcessed - Link sign up",
         "image_url": "No URL - Link sign up",
-        "preferredStartTime": data.startTime
+        "preferredStartTime": data.startTime // need to allow users to add this option if they sign up by screenshot in discord
     }
     console.log("pushing...")
     results = ref.push(uploadPacket)
