@@ -25,48 +25,73 @@
 
         <div class="container">
 
-          <p>This is for signing up for BCS Pokemon Go EX Raids!</p>
-                
+
+
+                <div class="card border-light mb-3" style="max-width: 500rem;">
+                        <div class="card-header">This is for BCS Pokemon Go EX Raids!</div>
+                        <div class="card-body">
+                          <h4 class="card-title">Sign Up!</h4>
+                          
+                          
+
+
+
+
+
+
+                                    <fieldset>
+                                            <legend>Please fill in your information.</legend>
+                                                
+                                            <div class="form-group">
+                                                <label class="col-form-label" for="trainerName">Pokemon Go Trainer Name</label>
+                                                <input type="text" class="form-control" placeholder="Pokemon Go Trainer Name" id="trainerName">
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-form-label" for="gymName">Gym Name</label>
+                                                <input type="text" class="form-control" placeholder="Gym Name" id="gymName">
+                                            </div>
+                                
+
+
+
+
+                                
+                                            
+                                            <div class="form-group">
+                                            <select class="custom-select">
+                                                <option selected="">Choose your team:</option>
+                                                <option value="Mystic">Mystic</option>
+                                                <option value="Instinct">Instinct</option>
+                                                <option value="Valor">Valor</option>
+                                            </select>
+                                            </div>
+                                
+
+                                            <div class="input-group date">
+                                                    <input type="text" class="form-control" id="datepicker"><span class="input-group-addon"><i class="glyphicon glyphicon-th"></i></span>
+                                                  </div>
+                                                  
+                                           
+                                
+                                            <button type="submit" class="btn btn-primary">Submit</button>
+                                        </fieldset>
+
+
+
+
+
+
+
+
+                        </div>
+                      </div>
+
+
+        
 
      
 
-          <fieldset>
-            <legend>Please fill in your information.</legend>
-                   
-            <div class="form-group">
-                <label class="col-form-label" for="trainerName">Pokemon Go Trainer Name</label>
-                <input type="text" class="form-control" placeholder="Pokemon Go Trainer Name" id="trainerName">
-            </div>
-            <div class="form-group">
-                <label class="col-form-label" for="gymName">Gym Name</label>
-                <input type="text" class="form-control" placeholder="Gym Name" id="gymName">
-            </div>
-
-
-            
-            <div class="form-group">
-              <select class="custom-select">
-                <option selected="">Choose your team:</option>
-                <option value="Mystic">Mystic</option>
-                <option value="Instinct">Instinct</option>
-                <option value="Valor">Valor</option>
-              </select>
-            </div>
-
-            <div class="form-group">
-              <div class="input-group mb-3">
-                <div class="custom-file">
-                  <input type="file" class="custom-file-input" id="inputGroupFile02">
-                  <label class="custom-file-label" for="inputGroupFile02">Upload a screenshot of your pass (If you can please!)</label>
-                </div>
-                <div class="input-group-append">
-                  <span class="input-group-text" id="">Upload</span>
-                </div>
-              </div>
-            </div>
-
-            <button type="submit" class="btn btn-primary">Submit</button>
-          </fieldset>
+         
           
 
            
@@ -85,6 +110,14 @@
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <!-- Latest compiled and minified JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+        <script>
+        
+            $('#datepicker .input-group.date').datepicker({
+                    format: 'mm/dd/yyyy',
+                    startDate: '-1d'
+                });
 
+
+        </script>
   </body>
 </html>
