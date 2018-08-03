@@ -10,7 +10,7 @@ const io = require('socket.io')(server);
 var discord = require('discord-bot-webhook');
 discord.hookId = '475007520583319562';
 discord.hookToken = 'wse9pfdMt5QCtP9ZCZ-duVbrV2bpD6iBrshXSkyNMvWSpFzKK473XC96KDyC1zqzdzrt';
-var Busboy = require('busboy');
+
 
 
 
@@ -53,32 +53,16 @@ app.post('/ex-raid-form', (req, res) => {
 
 
     // https://discordapp.com/api/webhooks/475007520583319562/wse9pfdMt5QCtP9ZCZ-duVbrV2bpD6iBrshXSkyNMvWSpFzKK473XC96KDyC1zqzdzrt
-    var busboy = new Busboy({ headers: req.headers });
-    busboy.on('file', function(fieldname, file, filename, encoding, mimetype) {
-        console.log("on file!")
-        var saveTo = path.join('.', filename);
-        console.log('Uploading: ' + saveTo);
-        file.pipe(fs.createWriteStream(saveTo));
-
-        discord.sendMessage(saveTo);
-    });
-    busboy.on('finish', function() {
-        console.log('Upload complete');
-        res.writeHead(200, { 'Connection': 'close' });
-        res.end("That's all folks!");
-        
-    });
+    
     
 
-    // discord.sendMessage(req.body.files);
-
-
-
+   
+    discord.sendMessage(dataWH);
     
     res.sendFile('thanks.html',{root: __dirname});
 
     
-    // res.sendFile('thanks.html',{root: __dirname});
+  
 });
 
 
@@ -185,6 +169,8 @@ function checkFormData(body, cb) {
     console.log(body.dateInput)
     console.log("body.startTime:")
     console.log(body.startTime)
+    console.log("body.ssUpload:")
+    console.log(body.ssUpload)
 
     console.log("\n\nNEED TO IMPLEMENT THIS DATA VALIDATION!!!!!!!!!     app.js   checkFormData()\n\n")
     cb(true);
