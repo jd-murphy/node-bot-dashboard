@@ -37,10 +37,15 @@ app.get('/ex-raid-sign-up', (req, res) => {
 
 app.post('/ex-raid-form', (req, res) => {
 
-    formIsValid = checkFormData(req.body)
-    if (formIsValid) {
-        pushToFirebase(req.body)
-    }
+    checkFormData(req.body, function(formIsValid) {
+        console.log("callback from check form data")
+        if (formIsValid) {
+            console.log("formIsValid")
+            console.log("pushing to firebase...")
+            pushToFirebase(req.body)
+        }
+    })
+    
     
     res.sendFile('thanks.html',{root: __dirname});
 });
@@ -121,7 +126,7 @@ function pushToFirebase(data) {
     var ref = db.ref("ex_ocr_testing");
     uploadPacket = {
         "dateUploaded": new Date(),
-        "discord_name": "Unavailable - Link sign up",
+        "discord_name": body.trainerName,
         "team": data.team,
         "gym_name": data.gym_name,
         "date_extracted": data.date,
