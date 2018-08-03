@@ -125,7 +125,7 @@ function pushToFirebase(data) {
     var db = admin.database();
     var ref = db.ref("ex_ocr_testing");
     uploadPacket = {
-        "dateUploaded": new Date(),
+        "dateUploaded": new Date().toUTCString(), // note this may not match the python format nicely, might need to change this
         "discord_name": data.trainerName,
         "team": data.team,
         "gym_name": data.gymName,
