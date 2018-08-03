@@ -37,10 +37,12 @@ app.get('/ex-raid-sign-up', (req, res) => {
 app.post('/ex-raid-form', (req, res) => {
 
 
+    console.log("Form submitted!")
+    console.log("The form data ->")
+    console.log(req.body)
 
 
-
-    res.sendFile('ex.html',{root: __dirname});
+    res.sendFile('thanks.html',{root: __dirname});
 });
 
 
