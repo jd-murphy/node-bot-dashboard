@@ -7,6 +7,8 @@ const admin = require('firebase-admin');
 const serviceAccount = process.env.SERVICEACCOUNT
 const PORT = process.env.PORT || 3000;
 const io = require('socket.io')(server);
+const rqst = require('request');
+
 
 
 const config = {
@@ -45,7 +47,23 @@ app.post('/ex-raid-form', (req, res) => {
             pushToFirebase(req.body)
         }
     })
+
+
+    // https://discordapp.com/api/webhooks/475007520583319562/wse9pfdMt5QCtP9ZCZ-duVbrV2bpD6iBrshXSkyNMvWSpFzKK473XC96KDyC1zqzdzrt
+
+    rqst.post({
+        headers: {'content-type' : 'application/json'},
+        url:     "https://discordapp.com/api/webhooks/475007520583319562/wse9pfdMt5QCtP9ZCZ-duVbrV2bpD6iBrshXSkyNMvWSpFzKK473XC96KDyC1zqzdzrt",
+        body:    {
+            "content": "Here is a POST from node js app to the discord webhook!!!"
+        }
+      }, function(error, response, body){
+        console.log("call back from the POST -> ");
+        console.log(body);
+      });
     
+
+      
     
     res.sendFile('thanks.html',{root: __dirname});
 });
