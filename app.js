@@ -65,7 +65,7 @@ app.post('/ex-raid-form', upload.single('ssUpload'), (req, res) => {
         
 
 
-        discord.sendMessage(req.file);
+        discord.sendMessage(req.file.path);
 
       }
    
@@ -163,8 +163,8 @@ function pushToFirebase(data) {
     }
     console.log("pushing...")
     results = ref.push(uploadPacket)
-    console.log('finished!\nresults ->')
-    console.log(results) // this needs to be cleaner, prints too much junk to the console
+    console.log('finished pushing to firebase ->')
+    // console.log(results) // this needs to be cleaner, prints too much junk to the console
 }
         
 
