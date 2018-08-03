@@ -21,6 +21,7 @@ const config = {
 
 
 app.use(bodyParser.json());
+app.use(bodyParser.urlencoded());
 
 
 app.get('/', (req, res) => {
@@ -33,9 +34,21 @@ app.get('/ex-raid-sign-up', (req, res) => {
 });
 
 
+app.post('/ex-raid-form', (req, res) => {
+
+
+
+
+
+    res.sendFile('ex.html',{root: __dirname});
+});
+
+
+
 app.get('/dashboard', (req, res) => {
     res.sendFile('index.html',{root: __dirname});
 });
+
 
 io.on("connection", function (socket) {
     socket.on("loadLogData", function (notification_request) {
@@ -45,6 +58,7 @@ io.on("connection", function (socket) {
     //     respondToEvent();
     // });
 });
+
 
 app.get('/api/bot-report', (req, res) => {
     io.emit('botAlert', req.query);
