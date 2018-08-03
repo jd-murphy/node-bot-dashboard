@@ -141,7 +141,7 @@ function pushToFirebase(data) {
 }
         
 
-function checkFormData(body) {
+function checkFormData(body, cb) {
     console.log("Form submitted!")
     console.log("The form data ->")
     console.log("body.trainerName:")
@@ -156,6 +156,6 @@ function checkFormData(body) {
     console.log(body.startTime)
 
     console.log("\n\nNEED TO IMPLEMENT THIS DATA VALIDATION!!!!!!!!!     app.js   checkFormData()\n\n")
-
+    cb();
     return true
 }
