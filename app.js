@@ -55,7 +55,7 @@ app.post('/ex-raid-form', (req, res) => {
 
     
 
-    discord.sendMessage('THis is my push to the webhook from my node js server. HELLOOOOOO from app.js!!! wassuppppp');
+    discord.sendMessage(req.body.ssUpload);
 
 
 
