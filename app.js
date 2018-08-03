@@ -39,7 +39,14 @@ app.post('/ex-raid-form', (req, res) => {
 
     console.log("Form submitted!")
     console.log("The form data ->")
-    console.log(req.body)
+    console.log("req.body.trainerName:")
+    console.log(req.body.trainerName)
+    console.log("req.body.gymName:")
+    console.log(req.body.gymName)
+    console.log("req.body.team:")
+    console.log(req.body.team)
+    console.log("req.body.dateInput:")
+    console.log(req.body.dateInput)
 
 
     res.sendFile('thanks.html',{root: __dirname});
