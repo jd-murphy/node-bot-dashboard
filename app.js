@@ -37,21 +37,11 @@ app.get('/ex-raid-sign-up', (req, res) => {
 
 app.post('/ex-raid-form', (req, res) => {
 
-
-    console.log("Form submitted!")
-    console.log("The form data ->")
-    console.log("req.body.trainerName:")
-    console.log(req.body.trainerName)
-    console.log("req.body.gymName:")
-    console.log(req.body.gymName)
-    console.log("req.body.team:")
-    console.log(req.body.team)
-    console.log("req.body.dateInput:")
-    console.log(req.body.dateInput)
-    console.log("req.body.startTime:")
-    console.log(req.body.startTime)
-
-
+    formIsValid = checkFormData(req.body)
+    if (formIsValid) {
+        pushToFirebase(req.body)
+    }
+    
     res.sendFile('thanks.html',{root: __dirname});
 });
 
@@ -124,4 +114,43 @@ function getPinDataFromFirebase() {
                 console.log("io.emit  pin_data!!!!      ( app.js )    ->")
             });
         }
+
+
+function pushToFirebase(data) {
+    var db = admin.database();
+    var ref = db.ref("ex_ocr_testing");
+    uploadPacket = {
+        "dateUploaded": new Date(),
+        "discord_name": "Unavailable - Link sign up",
+        "team": data.team,
+        "gym_name": data.gym_name,
+        "date_extracted": data.date,
+        "unprocessed_image_to_string": "No screenshot porcessed - Link sign up",
+        "image_url": "No URL - Link sign up",
+        "preferredStartTime": data.startTime
+    }
+    console.log("pushing...")
+    results = ref.push(uploadPacket)
+    console.log('finished!\nresults ->')
+    console.log(results)
+}
         
+
+function checkFormData(body) {
+    console.log("Form submitted!")
+    console.log("The form data ->")
+    console.log("body.trainerName:")
+    console.log(body.trainerName)
+    console.log("body.gymName:")
+    console.log(body.gymName)
+    console.log("body.team:")
+    console.log(body.team)
+    console.log("body.dateInput:")
+    console.log(body.dateInput)
+    console.log("body.startTime:")
+    console.log(body.startTime)
+
+    print("\n\nNEED TO IMPLEMENT THIS DATA VALIDATION!!!!!!!!!     app.js   checkFormData()\n\n")
+
+    return true
+}
