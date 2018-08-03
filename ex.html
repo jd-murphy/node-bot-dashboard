@@ -56,8 +56,8 @@
                                 
                                             
                                             <div class="form-group">
-                                            <label class="col-form-label" for="trainerName">Choose your team</label>
-                                            <select class="custom-select">
+                                            <label class="col-form-label" for="team">Choose your team</label>
+                                            <select class="custom-select" id="team">
                                                 <option selected="">Choose your team:</option>
                                                 <option value="Mystic">Mystic</option>
                                                 <option value="Instinct">Instinct</option>
@@ -65,10 +65,12 @@
                                             </select>
                                             </div>
                                 
+
+
                                             <div class="form-group">
-                                                <label class="col-form-label" for="trainerName">Date of EX Raid</label>
-                                                <div class="input-group date">
-                                                    <input type="text" class="form-control" id="datepicker"><span class="input-group-addon"><i class="glyphicon glyphicon-th"></i></span>
+                                                <label class="col-form-label" for="date">Date of EX Raid</label>
+                                                <div class="input-group date" id="date">
+                                                    <input type="text" class="form-control" id="dateInput"><span class="input-group-addon"><i class="glyphicon glyphicon-th"></i></span>
                                                 </div>
                                             </div>
                                                   
@@ -112,7 +114,7 @@
 
 
             $(document).ready(function(){
-                $('#datepicker .input-group.date').datepicker({
+                $('#dateInput').datepicker({
                         format: 'mm/dd/yyyy',
                         startDate: '-1d'
                     });
