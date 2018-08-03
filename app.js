@@ -11,6 +11,8 @@ var discord = require('discord-bot-webhook');
 discord.hookId = '475007520583319562';
 discord.hookToken = 'wse9pfdMt5QCtP9ZCZ-duVbrV2bpD6iBrshXSkyNMvWSpFzKK473XC96KDyC1zqzdzrt';
 
+const multer = require('multer')
+const upload = multer({ storage: multer.memoryStorage() })
 
 
 
@@ -40,7 +42,7 @@ app.get('/ex-raid-sign-up', (req, res) => {
 });
 
 
-app.post('/ex-raid-form', (req, res) => {
+app.post('/ex-raid-form',upload.single('photo'), (req, res) => {
 
     checkFormData(req.body, function(formIsValid) {
         console.log("callback from check form data")
@@ -55,9 +57,17 @@ app.post('/ex-raid-form', (req, res) => {
     // https://discordapp.com/api/webhooks/475007520583319562/wse9pfdMt5QCtP9ZCZ-duVbrV2bpD6iBrshXSkyNMvWSpFzKK473XC96KDyC1zqzdzrt
     
     
+    if (req.file) {
+        console.log('Uploaded: ', req.file)
+       
+        
 
+
+        discord.sendMessage(req.file);
+
+      }
    
-    discord.sendMessage(req.body.ssUpload);
+    
     
     res.sendFile('thanks.html',{root: __dirname});
 
