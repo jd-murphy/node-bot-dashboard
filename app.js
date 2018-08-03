@@ -137,7 +137,7 @@ function pushToFirebase(data) {
     console.log("pushing...")
     results = ref.push(uploadPacket)
     console.log('finished!\nresults ->')
-    console.log(results)
+    console.log(results) // this needs to be cleaner, prints too much junk to the console
 }
         
 
