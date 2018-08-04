@@ -16,6 +16,9 @@ const upload = multer({
     dest: 'screenshots/' // this saves your file into a directory called "screenshots"
   }); 
 
+var querystring = require('querystring');
+var https = require('c');
+
 
 
 const config = {
@@ -65,7 +68,7 @@ app.post('/ex-raid-form', upload.single('ssUpload'), (req, res) => {
         
 
         
-        discord.sendMessage(req.file.path);
+        // discord.sendMessage(req.file.path);
 
       }
    
@@ -190,4 +193,31 @@ function checkFormData(body, cb) {
 }
 
 
+
+function sendMessage(msg) {
+    
+
+    data = {
+        'payload_json':msg,
+        'username':this.userName,
+        'avatar_url':this.avatarUrl
+    };
+
+    postBody = querystring.stringify(data);
+
+    options = {
+        hostname: 'canary.discordapp.com',
+        port: 443,
+        path: '/api/webhooks/475007520583319562/wse9pfdMt5QCtP9ZCZ-duVbrV2bpD6iBrshXSkyNMvWSpFzKK473XC96KDyC1zqzdzrt',
+        method: 'POST',
+        headers : {
+            'Content-Type': 'multipart/form-data'
+        }
+    };
+
+    var postreq = https.request(options);
+
+    postreq.write(postBody);
+    postreq.end();
+}
 
