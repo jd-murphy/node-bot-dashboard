@@ -54,8 +54,8 @@
 
                                 
 
-                                <div id="raidName">
-                                        <div class="card border-primary mb-3" style="max-width: 50rem; min-width: 50rem;">
+                                <!-- <div id="raidName">
+                                        <div class="card border-primary mb-3" style="max-width: 30rem; min-width: 30rem;">
                                                 <div class="card-header">Raid Date</div>
                                                 <div class="card-body">
                                                 <h4 class="card-title">Gym Name</h4>
@@ -67,7 +67,7 @@
                                                 
                                                 </div>
                                             </div>
-                                    </div>
+                                    </div> -->
 
 
 
@@ -103,19 +103,58 @@
                     socket.on('raidDataUpdate', function (notification) {
                         console.log('SOCKET on raidDataUpdate!      ( testingex.html )   ')
                         var data = JSON.parse(notification); //process notication array
-                        // $("#raidTable tbody tr").remove(); 
-                        Object.keys(data).forEach(function (key) {
-                                // do something with data[key]
-                                console.log("data[key].date_extracted")
-                                console.log(data[key].date_extracted)
-                                console.log("data[key].discord_name")
-                                console.log(data[key].discord_name)
-                                console.log("data[key].gym_name")
-                                console.log(data[key].gym_name)
-                                console.log("data[key].team")
-                                console.log(data[key].team)
-                                // $('#logTable > tbody:last-child').append('<tr class="table-active"><td>' + data[key].date + '</td><td>' + data[key].info + '</td></tr>');
+                        $("#displayRaids div").remove(); 
+
+                        allRaids = []
+                        Object.keys(data).forEach(function(){
+                                r = (data[key].date_extracted + " " + data[key].gym_name)
+                                allRaids.push(r)
+                        }).then(function(allRaids){
+                            console.log("All raids -> ")
+                            console.log(allRaids)
+                            uniqueRaids = new Set(allRaids);
+                            console.log("unique raids -> ")
+                            console.log(uniqueRaids)
+                             
+                            uniqueRaids.forEach(function(raid) {
+
+                                raidDivID = raid.replace(/\s/g, "");  // create new for each raid after organizing raids into groups
+                                    $('#displayRaids').append(
+                                            
+                                            '<div id="' + raidDivID + '">' + 
+                                                '<div class="card border-primary mb-3" style="max-width: 30rem; min-width: 30rem;">' + 
+                                                        '<div class="card-header">Upcoming EX Raid</div>' + 
+                                                        '<div class="card-body">' + 
+                                                        '<h4 class="card-title">' + raid + '</h4>' + 
+                                                        '<div id="raidersDiv"></div>' + 
+                                                        '</div>' +
+                                                    '</div>' +
+                                            '</div>' 
+                                        );
                             });
+                            
+                            Object.keys(data).forEach(function (key) {
+                                        // do something with data[key]
+                                        console.log("data[key].date_extracted")
+                                        console.log(data[key].date_extracted)
+                                        console.log("data[key].discord_name")
+                                        console.log(data[key].discord_name)
+                                        console.log("data[key].gym_name")
+                                        console.log(data[key].gym_name)
+                                        console.log("data[key].team")
+                                        console.log(data[key].team)
+
+                                        r = (data[key].date_extracted + " " + data[key].gym_name);
+                                        raidDivID = raid.replace(/\s/g, "");
+
+
+                                        raiders = "" // '<p class="card-text">' + data[key].discord_name + '</p>'  // if match gym
+
+                                        $('#' + raidDivID + " > raidersDiv:last-child").append(
+                                            '<p class="card-text">' + data[key].discord_name + " " + data[key].team  + '</p>'
+                                        );
+                                    });
+                        });
                     });
 
                     window.addEventListener('load', function() {
