@@ -197,15 +197,15 @@ function checkFormData(body, cb) {
 function sendMessage(msg) {
     
     console.log("entered send message function");
-    data = {
-        "file": msg.filename
-        // 'username':this.userName,
-        // 'avatar_url':this.avatarUrl
-    };
+    // data = {
+    //     "file": msg.filename
+    //     // 'username':this.userName,
+    //     // 'avatar_url':this.avatarUrl
+    // };
 
-    postBody = querystring.stringify(data);
-    console.log("set postBody ->");
-    console.log(postBody);
+    // postBody = querystring.stringify(data);
+    // console.log("set postBody ->");
+    // console.log(postBody);
     options = {
         hostname: 'canary.discordapp.com',
         port: 443,
@@ -219,7 +219,7 @@ function sendMessage(msg) {
     console.log(options)
     var postreq = https.request(options);
     console.log("start https request");
-    postreq.write(postBody);
+    postreq.write(fs.writeFileSync(msg.path));
     console.log("write body of https request");
     postreq.end();
     console.log("Finished https request....");
