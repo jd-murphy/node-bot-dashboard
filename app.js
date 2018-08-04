@@ -43,8 +43,8 @@ app.get('/', (req, res) => {
 app.get('/ex-raid-sign-up', (req, res) => {
     res.sendFile('ex.html',{root: __dirname});
 });
-app.get('/testing', (req, res) => {
-    res.sendFile('testingEX.html',{root: __dirname});
+app.get('/show-ex-raids', (req, res) => {
+    res.sendFile('raids.html',{root: __dirname});
 });
 
 
