@@ -123,7 +123,7 @@
                         uniqueRaids.forEach(function(raid) {
 
                             raidDivID = raid.replace(/\s/g, "");  // create new for each raid after organizing raids into groups
-                            raidDivID = raidDivID.replace(":", "")
+                            raidDivID = raidDivID.replace(/:\s*/g, "")
                             console.log("creating div " + raidDivID)
                                 $('#displayRaids').append(
                                         
@@ -152,7 +152,7 @@
 
                                     r = (data[key].date_extracted + " " + data[key].gym_name);
                                     raidDivID = r.replace(/\s/g, "");
-                                    raidDivID = raidDivID.replace(":", "")
+                                    raidDivID = raidDivID.replace(/:\s*/g, "")
                                     console.log("finding div " + raidDivID)
 
                                     raiders = "" // '<p class="card-text">' + data[key].discord_name + '</p>'  // if match gym
