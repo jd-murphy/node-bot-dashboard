@@ -21,8 +21,8 @@ var request = require("request");
 var CronJob = require('cron').CronJob;
 
 
-new CronJob('*/30 * * * * *', function() {
-    console.log('You will see this message every 30 seconds');
+new CronJob('* */1 * * * *', function() {
+    console.log('You will see this message every ONE minute');
     console.log("Running job to find old raids...")
     clearOldRaidsFromFirebase()
 
