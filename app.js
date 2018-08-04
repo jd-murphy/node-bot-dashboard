@@ -192,7 +192,7 @@ function clearOldRaidsFromFirebase() {
                             console.log(data[key].gym_name)
                             console.log(data[key].date_extracted)
                             console.log(data[key].discord_name)
-                            console.log(data[key])
+                            console.log(key)
                         } 
                
                     });
