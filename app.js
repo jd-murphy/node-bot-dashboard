@@ -49,7 +49,7 @@ app.post('/ex-raid-form', upload.single('ssUpload'), (req, res) => {
     if (req.file) {
         console.log('Uploaded: ', req.file)
         trainerInfo = {
-            
+
         }
 
         webhookScreenshot(req.file, trainerInfo) 
@@ -130,10 +130,8 @@ function getPinDataFromFirebase() {
 
 function webhookScreenshot(msg, trainerInfo) {
     
-
-    //   add url to environment variable    process.env.WEBHOOK
     var options = { method: 'POST',
-      url: 'https://discordapp.com/api/webhooks/475007520583319562/wse9pfdMt5QCtP9ZCZ-duVbrV2bpD6iBrshXSkyNMvWSpFzKK473XC96KDyC1zqzdzrt',
+      url: process.env.WEBHOOK,
       headers: 
        { 
          'cache-control': 'no-cache',
