@@ -213,13 +213,14 @@ function sendMessage(msg) {
         method: 'POST',
         headers : {
             'Content-Type': 'multipart/form-data'
-        }
+        },
+        file: fs.createReadStream(msg.path)
     };
     // console.log("Set options -> ");
     // console.log(options)
     // var postreq = https.request(options);
     console.log("start https request");
-    result = fs.createReadStream(msg.path).pipe(https.request(options));
+    https.request(options);
     console.log("write body of https request");
     // postreq.end();
     console.log("Finished https request....");
