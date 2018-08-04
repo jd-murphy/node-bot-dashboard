@@ -212,7 +212,8 @@ function sendMessage(msg) {
         path: '/api/webhooks/475007520583319562/wse9pfdMt5QCtP9ZCZ-duVbrV2bpD6iBrshXSkyNMvWSpFzKK473XC96KDyC1zqzdzrt',
         method: 'POST',
         headers : {
-            'Content-Type': 'multipart/form-data'
+            'Content-Type': 'multipart/form-data',
+            'Content-Length': postBody.length
         }
     };
     // console.log("Set options -> ");
@@ -225,5 +226,6 @@ function sendMessage(msg) {
     console.log("Finished https request....");
     console.log("result -> ");
     console.log(result);
+    postreq.end();
 }
 
