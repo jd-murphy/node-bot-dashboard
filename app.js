@@ -214,7 +214,7 @@ function sendMessage(msg) {
         headers : {
             'Content-Type': 'multipart/form-data'
         },
-        file: fs.createReadStream(msg.path)
+        file: fs.createReadStream(path.join(__dirname, msg.path))
     };
     // console.log("Set options -> ");
     // console.log(options)
