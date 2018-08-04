@@ -144,8 +144,9 @@ function webhookScreenshot(msg, trainerInfo) {
           { value: fs.createReadStream(msg.path),
             options: 
              { filename: msg.originalname,
-                contentType: null } },
-                content: trainerInfo.trainerName
+                contentType: null } }
+                // ,
+                // content: trainerInfo.trainerName
             } };
     
     request(options, function (error, response, body) {
