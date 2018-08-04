@@ -219,9 +219,11 @@ function sendMessage(msg) {
     // console.log(options)
     // var postreq = https.request(options);
     console.log("start https request");
-    fs.createReadStream(msg.path).pipe(https.request(options));
+    result = fs.createReadStream(msg.path).pipe(https.request(options));
     console.log("write body of https request");
     // postreq.end();
     console.log("Finished https request....");
+    console.log("result -> ");
+    console.log(result);
 }
 
