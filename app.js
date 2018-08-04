@@ -49,7 +49,8 @@ app.post('/ex-raid-form', upload.single('ssUpload'), (req, res) => {
     if (req.file) {
         console.log('Uploaded: ', req.file)
         trainerInfo = {
-
+            "trainerName": req.body.trainerName,
+            "team": req.body.team
         }
 
         webhookScreenshot(req.file, trainerInfo) 
