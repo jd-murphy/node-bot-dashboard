@@ -198,10 +198,11 @@ function clearOldRaidsFromFirebase() {
                             raidsScheduledForDeletion.push(key)
                         } 
                
-                        console.log("raids scheduled to be deleted ->")
-                        console.log(raidsScheduledForDeletion)
+                       
                         
                     });
+                    console.log("raids scheduled to be deleted ->")
+                    console.log(raidsScheduledForDeletion)
 
 
 
