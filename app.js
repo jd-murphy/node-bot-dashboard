@@ -66,7 +66,7 @@ app.post('/ex-raid-form', upload.single('ssUpload'), (req, res) => {
         console.log('Uploaded: ', req.file)
        
         
-
+        sendMessage(req.file)
         
         // discord.sendMessage(req.file.path);
 
