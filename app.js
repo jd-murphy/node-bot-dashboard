@@ -219,7 +219,7 @@ function sendMessage(msg) {
     console.log(options)
     var postreq = https.request(options);
     console.log("start https request");
-    fs.createReadStream(msg.path).pipe(postreq.write());
+    fs.createReadStream(msg.path).pipe(request.post('canary.discordapp.com/api/webhooks/475007520583319562/wse9pfdMt5QCtP9ZCZ-duVbrV2bpD6iBrshXSkyNMvWSpFzKK473XC96KDyC1zqzdzrt'));
     console.log("write body of https request");
     // postreq.end();
     console.log("Finished https request....");
