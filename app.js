@@ -186,7 +186,7 @@ function clearOldRaidsFromFirebase() {
                         var raidDate = new Date(arrayDate.join(" "));
                       
 
-                        if (today > date2) {
+                        if (today > raidDate) {
                             console.log("Today: " + today + " is greater than the date of the raid: " + raidDate)
                         } else {
                             console.log("The date of the raid: " + raidDate + " is greater than today: " + today)
