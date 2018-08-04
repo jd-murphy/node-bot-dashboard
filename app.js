@@ -7,9 +7,6 @@ const admin = require('firebase-admin');
 const serviceAccount = process.env.SERVICEACCOUNT
 const PORT = process.env.PORT || 3000;
 const io = require('socket.io')(server);
-var discord = require('discord-bot-webhook');
-discord.hookId = '475007520583319562';
-discord.hookToken = 'wse9pfdMt5QCtP9ZCZ-duVbrV2bpD6iBrshXSkyNMvWSpFzKK473XC96KDyC1zqzdzrt';
 
 const multer = require('multer')
 const upload = multer({
@@ -49,36 +46,15 @@ app.get('/ex-raid-sign-up', (req, res) => {
 
 
 app.post('/ex-raid-form', upload.single('ssUpload'), (req, res) => {
-
-    checkFormData(req.body, function(formIsValid) {
-        console.log("callback from check form data")
-        if (formIsValid) {
-            console.log("formIsValid")
-            console.log("pushing to firebase...")
-            pushToFirebase(req.body)
-        }
-    })
-
-
-    // https://discordapp.com/api/webhooks/475007520583319562/wse9pfdMt5QCtP9ZCZ-duVbrV2bpD6iBrshXSkyNMvWSpFzKK473XC96KDyC1zqzdzrt
-    
-    
     if (req.file) {
         console.log('Uploaded: ', req.file)
-       
-        
-        sendMessage(req.file, req.body.trainerName)
-        
-        // discord.sendMessage(req.file.path);
+        trainerInfo = {
+            
+        }
 
+        webhookScreenshot(req.file, trainerInfo) 
       }
-   
-    
-    
     res.sendFile('thanks.html',{root: __dirname});
-
-    
-  
 });
 
 
@@ -152,53 +128,10 @@ function getPinDataFromFirebase() {
         }
 
 
-function pushToFirebase(data) {
-    var db = admin.database();
-    var ref = db.ref("ex_ocr_testing");
-    uploadPacket = {
-        "dateUploaded": new Date().toUTCString(), // this does not match the python format,  need to change this
-        "discord_name": data.trainerName,
-        "team": data.team,
-        "gym_name": data.gymName,
-        "date_extracted": data.dateInput, // this does not match the screenshot format,  need to change this
-        "unprocessed_image_to_string": "No screenshot porcessed - Link sign up",
-        "image_url": "No URL - Link sign up",
-        "preferredStartTime": data.startTime // need to allow users to add this option if they sign up by screenshot in discord
-    }
-    console.log("pushing...")
-    results = ref.push(uploadPacket)
-    console.log('finished pushing to firebase ->')
-    // console.log(results) // this needs to be cleaner, prints too much junk to the console
-}
-        
-
-function checkFormData(body, cb) {
-    console.log("Form submitted!")
-    console.log("The form data ->")
-    console.log("body.trainerName:")
-    console.log(body.trainerName)
-    console.log("body.gymName:")
-    console.log(body.gymName)
-    console.log("body.team:")
-    console.log(body.team)
-    console.log("body.dateInput:")
-    console.log(body.dateInput)
-    console.log("body.startTime:")
-    console.log(body.startTime)
-    console.log("body.ssUpload:")
-    console.log(body.ssUpload)
-
-    console.log("\n\nNEED TO IMPLEMENT THIS DATA VALIDATION!!!!!!!!!     app.js   checkFormData()\n\n")
-    cb(true);
-
-}
-
-
-
-function sendMessage(msg, trainerName) {
+function webhookScreenshot(msg, trainerInfo) {
     
 
-    
+    //   add url to environment variable    process.env.WEBHOOK
     var options = { method: 'POST',
       url: 'https://discordapp.com/api/webhooks/475007520583319562/wse9pfdMt5QCtP9ZCZ-duVbrV2bpD6iBrshXSkyNMvWSpFzKK473XC96KDyC1zqzdzrt',
       headers: 
@@ -211,7 +144,7 @@ function sendMessage(msg, trainerName) {
             options: 
              { filename: msg.originalname,
                 contentType: null } },
-                content: trainerName
+                content: trainerInfo
             } };
     
     request(options, function (error, response, body) {
