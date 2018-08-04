@@ -122,7 +122,7 @@
                             
                         uniqueRaids.forEach(function(raid) {
 
-                            raidDivID = r.replace(/[^\w\s]|_/g, "")
+                            raidDivID = raid.replace(/[^\w\s]|_/g, "")
                             raidDivID = raidDivID.replace(/\s/g, "");
                             console.log("creating div " + raidDivID)
                                 $('#displayRaids').append(
