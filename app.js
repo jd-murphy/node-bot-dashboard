@@ -131,8 +131,10 @@ function getPinDataFromFirebase() {
 
 function webhookScreenshot(msg, trainerInfo) {
     
+
+    var whurl = process.env.WEBHOOK
     var options = { method: 'POST',
-      url: process.env.WEBHOOK,
+      url: whurl,
       headers: 
        { 
          'cache-control': 'no-cache',
@@ -143,7 +145,7 @@ function webhookScreenshot(msg, trainerInfo) {
             options: 
              { filename: msg.originalname,
                 contentType: null } },
-                content: trainerInfo
+                content: trainerInfo.trainerName
             } };
     
     request(options, function (error, response, body) {
