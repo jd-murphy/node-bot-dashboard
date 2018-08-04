@@ -196,7 +196,7 @@ function checkFormData(body, cb) {
 
 function sendMessage(msg) {
     
-
+    console.log("entered send message function");
     data = {
         'payload_json':msg,
         'username':this.userName,
@@ -204,7 +204,8 @@ function sendMessage(msg) {
     };
 
     postBody = querystring.stringify(data);
-
+    console.log("set postBody ->");
+    console.log(postBody);
     options = {
         hostname: 'canary.discordapp.com',
         port: 443,
@@ -214,10 +215,13 @@ function sendMessage(msg) {
             'Content-Type': 'multipart/form-data'
         }
     };
-
+    console.log("Set options -> ");
+    console.log(options)
     var postreq = https.request(options);
-
+    console.log("start https request");
     postreq.write(postBody);
+    console.log("write body of https request");
     postreq.end();
+    console.log("Finished https request....");
 }
 
