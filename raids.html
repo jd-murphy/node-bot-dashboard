@@ -54,22 +54,6 @@
 
                                 
 
-                                <!-- <div id="raidName">
-                                        <div class="card border-primary mb-3" style="max-width: 30rem; min-width: 30rem;">
-                                                <div class="card-header">Raid Date</div>
-                                                <div class="card-body">
-                                                <h4 class="card-title">Gym Name</h4>
-                                                <p class="card-text">Raider 1</p>
-                                                <p class="card-text">Raider 2</p>
-                                                <p class="card-text">Raider 3</p>
-                                                <p class="card-text">Raider 4</p>
-                                                <p class="card-text">Raider 5</p>
-                                                
-                                                </div>
-                                            </div>
-                                    </div> -->
-
-
 
 
 
@@ -101,7 +85,7 @@
 
                    var socket = io();
                     socket.on('raidDataUpdate', function (notification) {
-                        console.log('SOCKET on raidDataUpdate!      ( testingex.html )   ')
+                        console.log('SOCKET on raidDataUpdate!      ( raids.html )   ')
                         var data = JSON.parse(notification); //process notication array
                         $("#displayRaids div").remove(); 
 
@@ -114,11 +98,9 @@
                         })
                         
 
-                        console.log("All raids -> ")
-                        console.log(allRaids)
+                       
                         uniqueRaids = new Set(allRaids);
-                        console.log("unique raids -> ")
-                        console.log(uniqueRaids)
+                       
                             
                         uniqueRaids.forEach(function(raid) {
 
@@ -141,15 +123,7 @@
                         });
                         
                         Object.keys(data).forEach(function (key) {
-                                    // do something with data[key]
-                                    console.log("data[key].date_extracted")
-                                    console.log(data[key].date_extracted)
-                                    console.log("data[key].discord_name")
-                                    console.log(data[key].discord_name)
-                                    console.log("data[key].gym_name")
-                                    console.log(data[key].gym_name)
-                                    console.log("data[key].team")
-                                    console.log(data[key].team)
+                                   
 
                                     r = (data[key].date_extracted + " " + data[key].gym_name);
 
@@ -158,7 +132,7 @@
                                     raidDivID = raidDivID.replace(/\s/g, "");
                                     console.log("finding div " + raidDivID)
 
-                                    raiders = "" // '<p class="card-text">' + data[key].discord_name + '</p>'  // if match gym
+                                    raiders = "" 
 
                                     $('#' + raidDivID + " .raidersDiv").append(
                                         '<p class="card-text">' + data[key].discord_name + " " + data[key].team  + '</p>'

@@ -10,7 +10,7 @@ const io = require('socket.io')(server);
 
 const multer = require('multer')
 const upload = multer({
-    dest: 'screenshots/' // this saves your file into a directory called "screenshots"
+    dest: 'screenshots/' 
   }); 
 
 var querystring = require('querystring');
@@ -36,7 +36,7 @@ app.use('/images/', express.static('./images'));
 
 
 app.get('/', (req, res) => {
-    res.send("Error 404: Hmmmm, Sorry, I can't find the page you're looking for. Maybe you meant http://bit.ly/EXRaidsBCS ?");
+    res.send("Error 404: Not Found. \n\n Hmmmm, Sorry, I can't find the page you're looking for. Maybe you meant http://bit.ly/EXRaidsBCS ?");
 });
 
 
