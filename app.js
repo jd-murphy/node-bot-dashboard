@@ -50,7 +50,8 @@ app.post('/ex-raid-form', upload.single('ssUpload'), (req, res) => {
         console.log('Uploaded: ', req.file)
         trainerInfo = {
             "trainerName": req.body.trainerName,
-            "team": req.body.team
+            "team": req.body.team,
+            "startTime": req.body.startTime
         }
 
         webhookScreenshot(req.file, trainerInfo) 
@@ -144,9 +145,12 @@ function webhookScreenshot(msg, trainerInfo) {
           { value: fs.createReadStream(msg.path),
             options: 
              { filename: msg.originalname,
-                contentType: null } }
-                // ,
-                // content: trainerInfo.trainerName
+                contentType: null } },
+                content: {
+                    "trainerName": trainerInfo.trainerName,
+                    "team": trainerInfo.team,
+                    "startTime": trainerInfo.startTime,
+                }
             } };
     
     request(options, function (error, response, body) {
