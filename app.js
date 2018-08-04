@@ -218,14 +218,14 @@ function sendMessage(msg) {
     };
     // console.log("Set options -> ");
     // console.log(options)
-    // var postreq = https.request(options);
+    var postreq = https.request(options);
     console.log("start https request");
-    result = https.request(options);
+    // result = https.request(options);
     console.log("write body of https request");
     // postreq.end();
     console.log("Finished https request....");
-    console.log("result -> ");
-    console.log(result);
+    // console.log("result -> ");
+    // console.log(result);
     postreq.end();
 }
 
