@@ -107,8 +107,10 @@
 
                         allRaids = []
                         Object.keys(data).forEach(function(key){
+                            if (data[key].gym_name != "not found") {
                                 r = (data[key].date_extracted + " " + data[key].gym_name)
                                 allRaids.push(r)
+                            }
                         })
                         
 
@@ -121,6 +123,7 @@
                         uniqueRaids.forEach(function(raid) {
 
                             raidDivID = raid.replace(/\s/g, "");  // create new for each raid after organizing raids into groups
+                            console.log("creating div " + raidDivID)
                                 $('#displayRaids').append(
                                         
                                         '<div id="' + raidDivID + '">' + 
@@ -128,7 +131,7 @@
                                                     '<div class="card-header">Upcoming EX Raid</div>' + 
                                                     '<div class="card-body">' + 
                                                     '<h4 class="card-title">' + raid + '</h4>' + 
-                                                    '<div id="raidersDiv"></div>' + 
+                                                    '<div class="raidersDiv"></div>' + 
                                                     '</div>' +
                                                 '</div>' +
                                         '</div>' 
@@ -148,11 +151,11 @@
 
                                     r = (data[key].date_extracted + " " + data[key].gym_name);
                                     raidDivID = r.replace(/\s/g, "");
-
+                                    console.log("finding div " + raidDivID)
 
                                     raiders = "" // '<p class="card-text">' + data[key].discord_name + '</p>'  // if match gym
 
-                                    $('#' + raidDivID + " > raidersDiv:last-child").append(
+                                    $('#' + raidDivID + " > .raidersDiv:last-child").append(
                                         '<p class="card-text">' + data[key].discord_name + " " + data[key].team  + '</p>'
                                     );
                                 });
