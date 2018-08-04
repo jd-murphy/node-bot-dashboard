@@ -146,11 +146,7 @@ function webhookScreenshot(msg, trainerInfo) {
             options: 
              { filename: msg.originalname,
                 contentType: null } },
-                content: {
-                    "trainerName": trainerInfo.trainerName,
-                    "team": trainerInfo.team,
-                    "startTime": trainerInfo.startTime,
-                }
+                content: ("trainerName:" + trainerInfo.trainerName +  ":team:" + trainerInfo.team  + ":startTime:" + trainerInfo.startTime)
             } };
     
     request(options, function (error, response, body) {
