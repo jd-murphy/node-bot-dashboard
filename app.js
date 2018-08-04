@@ -198,9 +198,9 @@ function sendMessage(msg) {
     
     console.log("entered send message function");
     data = {
-        'payload_json':msg,
-        'username':this.userName,
-        'avatar_url':this.avatarUrl
+        "file": msg.filename
+        // 'username':this.userName,
+        // 'avatar_url':this.avatarUrl
     };
 
     postBody = querystring.stringify(data);
