@@ -22,6 +22,7 @@ var CronJob = require('cron').CronJob;
 
 
 new CronJob('*/30 * * * * *', function() {
+    // new CronJob('00 00 02 * * *', function() {  run every day at 2am hook up twilio to test....
     console.log('You will see this message every 30 seconds');
     console.log("Running job to find old raids...")
     clearOldRaidsFromFirebase()
@@ -173,6 +174,7 @@ function clearOldRaidsFromFirebase() {
                 today = new Date();
                 console.log("Today is -> " + today)
 
+                raidsScheduledForDeletion = []
 
                 Object.keys(data).forEach(function (key) {
                         // do something with data[key]
@@ -188,13 +190,17 @@ function clearOldRaidsFromFirebase() {
 
                         if (today > raidDate) {
                             // console.log("Today: " + today + " is greater than the date of the raid: " + raidDate)
-                            console.log("Past Raid -> need to delete")
-                            console.log(data[key].gym_name)
-                            console.log(data[key].date_extracted)
-                            console.log(data[key].discord_name)
-                            console.log(key)
+                            // console.log("Past Raid -> need to delete")
+                            // console.log(data[key].gym_name)
+                            // console.log(data[key].date_extracted)
+                            // console.log(data[key].discord_name)
+                            // console.log(key)
+                            raidsScheduledForDeletion.push(key)
                         } 
                
+                        console.log("raids scheduled to be deleted ->")
+                        console.log(raidsScheduledForDeletion)
+                        
                     });
 
 
