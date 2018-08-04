@@ -197,15 +197,15 @@ function checkFormData(body, cb) {
 function sendMessage(msg) {
     
     console.log("entered send message function");
-    // data = {
-    //     "file": msg.filename
-    //     // 'username':this.userName,
-    //     // 'avatar_url':this.avatarUrl
-    // };
+    data = {
+        "file": fs.createReadStream(path.join(__dirname, msg.path))
+        // 'username':this.userName,
+        // 'avatar_url':this.avatarUrl
+    };
 
-    // postBody = querystring.stringify(data);
-    // console.log("set postBody ->");
-    // console.log(postBody);
+    postBody = querystring.stringify(data);
+    console.log("set postBody ->");
+    console.log(postBody);
     options = {
         hostname: 'canary.discordapp.com',
         port: 443,
@@ -213,8 +213,7 @@ function sendMessage(msg) {
         method: 'POST',
         headers : {
             'Content-Type': 'multipart/form-data'
-        },
-        file: fs.createReadStream(path.join(__dirname, msg.path))
+        }
     };
     // console.log("Set options -> ");
     // console.log(options)
