@@ -19,6 +19,7 @@ const upload = multer({
 var querystring = require('querystring');
 var https = require('https');
 var path = require('path');
+var request = require("request");
 
 
 const config = {
@@ -196,36 +197,25 @@ function checkFormData(body, cb) {
 
 function sendMessage(msg) {
     
-    console.log("entered send message function");
-    data = {
-        "file": fs.createReadStream(msg.path)
-        // 'username':this.userName,
-        // 'avatar_url':this.avatarUrl
-    };
+    // var fs = require("fs");
+    // var request = require("request");
 
-    postBody = querystring.stringify(data);
-    console.log("set postBody ->");
-    console.log(postBody);
-    options = {
-        hostname: 'canary.discordapp.com',
-        port: 443,
-        path: '/api/webhooks/475007520583319562/wse9pfdMt5QCtP9ZCZ-duVbrV2bpD6iBrshXSkyNMvWSpFzKK473XC96KDyC1zqzdzrt',
-        method: 'POST',
-        headers : {
-            'Content-Type': 'multipart/form-data',
-            'Content-Length': postBody.length
-        }
-    };
-    // console.log("Set options -> ");
-    // console.log(options)
-    var postreq = https.request(options);
-    console.log("start https request");
-    // result = https.request(options);
-    console.log("write body of https request");
-    // postreq.end();
-    console.log("Finished https request....");
-    // console.log("result -> ");
-    // console.log(result);
-    postreq.end();
+    var options = { method: 'POST',
+    url: 'https://discordapp.com/api/webhooks/475007520583319562/wse9pfdMt5QCtP9ZCZ-duVbrV2bpD6iBrshXSkyNMvWSpFzKK473XC96KDyC1zqzdzrt',
+    headers: 
+    { 'content-type': 'multipart/form-data' },
+    formData: 
+    { file: 
+        { value: fs.createReadStream(msg.path),
+            options: 
+            { filename: msg.filename,
+            contentType: null } } } };
+
+    request(options, function (error, response, body) {
+    if (error) throw new Error(error);
+
+    console.log(body);
+    });
+
 }
 
