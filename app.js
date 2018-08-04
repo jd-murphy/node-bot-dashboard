@@ -207,9 +207,9 @@ function sendMessage(msg) {
          'content-type': 'multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW' },
       formData: 
        { file: 
-          { value: 'fs.createReadStream("msg.path")',
+          { value: fs.createReadStream(msg.path),
             options: 
-             { filename: 'msg.filename',
+             { filename: msg.filename,
                contentType: null } } } };
     
     request(options, function (error, response, body) {
