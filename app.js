@@ -220,7 +220,7 @@ function sendMessage(msg) {
     // console.log(options)
     // var postreq = https.request(options);
     console.log("start https request");
-    https.request(options);
+    result = https.request(options);
     console.log("write body of https request");
     // postreq.end();
     console.log("Finished https request....");
