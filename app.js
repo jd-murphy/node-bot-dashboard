@@ -43,6 +43,9 @@ app.get('/', (req, res) => {
 app.get('/ex-raid-sign-up', (req, res) => {
     res.sendFile('ex.html',{root: __dirname});
 });
+app.get('/testing', (req, res) => {
+    res.sendFile('testingEX.html',{root: __dirname});
+});
 
 
 app.post('/ex-raid-form', upload.single('ssUpload'), (req, res) => {
@@ -70,9 +73,9 @@ io.on("connection", function (socket) {
     socket.on("loadLogData", function (notification_request) {
         getLogDataFromFirebase();
     });
-    // socket.on("onYourEvent", function (notification_request) {   // set up new events like this
-    //     respondToEvent();
-    // });
+    socket.on("loadRaidData", function (notification_request) {  
+        getRaidDataFromFirebase();
+    });
 });
 
 
@@ -87,6 +90,7 @@ server.listen(PORT, () => {
     setUpFirebase();
     getPinDataFromFirebase();
     getLogDataFromFirebase();
+    getRaidDataFromFirebase()
 });
 
 
@@ -126,6 +130,21 @@ function getPinDataFromFirebase() {
                 console.log(data)
                 io.emit('pinDataUpdate', JSON.stringify(data));
                 console.log("io.emit  pin_data!!!!      ( app.js )    ->")
+            });
+        }
+
+
+function getRaidDataFromFirebase() {
+            var db = admin.database();
+            var ref = db.ref("ex_ocr_testing");
+            console.log("connecting to firebase!");
+            ref.on("value", function(snapshot) {
+                console.log("SNAPSHOT ->  ");
+                data = snapshot.val()
+                console.log("snapshot.val()       data ->")
+                console.log(data)
+                io.emit('raidDataUpdate', JSON.stringify(data));
+                console.log("io.emit  ex_ocr_testing!!!!      ( app.js )    ->")
             });
         }
 
