@@ -197,25 +197,27 @@ function checkFormData(body, cb) {
 
 function sendMessage(msg) {
     
-    // var fs = require("fs");
-    // var request = require("request");
 
+    
     var options = { method: 'POST',
-    url: 'https://discordapp.com/api/webhooks/475007520583319562/wse9pfdMt5QCtP9ZCZ-duVbrV2bpD6iBrshXSkyNMvWSpFzKK473XC96KDyC1zqzdzrt',
-    headers: 
-    { 'content-type': 'multipart/form-data' },
-    formData: 
-    { file: 
-        { value: fs.createReadStream(msg.path),
+      url: 'https://discordapp.com/api/webhooks/475007520583319562/wse9pfdMt5QCtP9ZCZ-duVbrV2bpD6iBrshXSkyNMvWSpFzKK473XC96KDyC1zqzdzrt',
+      headers: 
+       { 
+         'cache-control': 'no-cache',
+         'content-type': 'multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW' },
+      formData: 
+       { file: 
+          { value: 'fs.createReadStream("msg.path")',
             options: 
-            { filename: msg.filename,
-            contentType: null } } } };
-
+             { filename: 'msg.filename',
+               contentType: null } } } };
+    
     request(options, function (error, response, body) {
-    if (error) throw new Error(error);
-
-    console.log(body);
+      if (error) throw new Error(error);
+    
+      console.log(body);
     });
+    
 
 }
 
