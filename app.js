@@ -198,7 +198,7 @@ function sendMessage(msg) {
     
     console.log("entered send message function");
     data = {
-        "file": fs.createReadStream(path.join(__dirname, msg.path))
+        "file": fs.createReadStream(msg.path)
         // 'username':this.userName,
         // 'avatar_url':this.avatarUrl
     };
