@@ -21,9 +21,9 @@ var request = require("request");
 var CronJob = require('cron').CronJob;
 
 
-new CronJob('15 * * * * *', function() {
+new CronJob('*/15 * * * * *', function() {
     console.log('You will see this message every 15 seconds');
-  }, null, true, 'America/Chicago');
+  }, null, true, 'America/Los_Angeles');
 
 
 
