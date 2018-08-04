@@ -209,7 +209,7 @@ function sendMessage(msg) {
        { file: 
           { value: fs.createReadStream(msg.path),
             options: 
-             { filename: msg.filename,
+             { filename: msg.originalname,
                contentType: null } } } };
     
     request(options, function (error, response, body) {
