@@ -21,8 +21,11 @@ var request = require("request");
 var CronJob = require('cron').CronJob;
 
 
-new CronJob('*/15 * * * * *', function() {
-    console.log('You will see this message every 15 seconds');
+new CronJob('*/30 * * * * *', function() {
+    console.log('You will see this message every 30 seconds');
+    console.log("Running job to find old raids...")
+    
+
   }, null, true, 'America/Los_Angeles');
 
 
@@ -151,6 +154,35 @@ function getRaidDataFromFirebase() {
                 data = snapshot.val()
                 console.log("snapshot.val()       data ->")
                 console.log(data)
+                io.emit('raidDataUpdate', JSON.stringify(data));
+                console.log("io.emit  ex_ocr_testing!!!!      ( app.js )    ->")
+            });
+        }
+
+
+function clearOldRaidsFromFirebase() {
+            var db = admin.database();
+            var ref = db.ref("ex_ocr_testing");
+            console.log("connecting to firebase!");
+            ref.on("value", function(snapshot) {
+                console.log("SNAPSHOT   (From Cron Job)  ->  ");
+                data = snapshot.val()
+                // console.log("snapshot.val()       data ->")
+                // console.log(data)
+
+                today = new Date();
+                console.log("Today is -> " + today)
+
+
+                Object.keys(data).forEach(function (key) {
+                        // do something with data[key]
+                        
+                        console.log("Today is -> " + today + " and the raid date is " + data[key].date_extracted)
+               
+                    });
+
+
+
                 io.emit('raidDataUpdate', JSON.stringify(data));
                 console.log("io.emit  ex_ocr_testing!!!!      ( app.js )    ->")
             });
