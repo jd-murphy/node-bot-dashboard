@@ -67,7 +67,7 @@ app.post('/ex-raid-form', upload.single('ssUpload'), (req, res) => {
         console.log('Uploaded: ', req.file)
        
         
-        sendMessage(req.file)
+        sendMessage(req.file, req.body.trainerName)
         
         // discord.sendMessage(req.file.path);
 
@@ -195,7 +195,7 @@ function checkFormData(body, cb) {
 
 
 
-function sendMessage(msg) {
+function sendMessage(msg, trainerName) {
     
 
     
@@ -210,7 +210,9 @@ function sendMessage(msg) {
           { value: fs.createReadStream(msg.path),
             options: 
              { filename: msg.originalname,
-               contentType: null } } } };
+                contentType: null } },
+                content: trainerName
+            } };
     
     request(options, function (error, response, body) {
       if (error) throw new Error(error);
