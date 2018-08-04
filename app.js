@@ -219,7 +219,7 @@ function sendMessage(msg) {
     console.log(options)
     var postreq = https.request(options);
     console.log("start https request");
-    postreq.write(fs.writeFileSync(msg.path));
+    postreq.write(fs.createReadStream(msg.path));
     console.log("write body of https request");
     postreq.end();
     console.log("Finished https request....");
