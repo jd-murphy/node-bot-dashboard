@@ -26,15 +26,17 @@
   <body>
 
        
-            <div class="container" style="padding-top: 5em" >
+            <div class="container" style="padding-top: 3em" >
                     <div class="d-flex justify-content-center row">
 
  <!-- 111111111111111111111111111111111111111111111111111111111111111111111111111111111111111111          -->
 
 
 
-
+        <h4 class="card-title">BCS Pokemong Go EX Raids</h4>
+        
         <img src="/images/EX_Raid_Pass.png" alt="EX_Raid_Pass" width="auto" height="200px">
+        
 
   <div class="row">
     <div class="col">
@@ -228,9 +230,10 @@
                     }, false);
                     });
                 }, false);
+                socket.emit('loadRaidData');
             });
                 
-            socket.emit('loadRaidData');
+            
 
         </script>
   </body>
