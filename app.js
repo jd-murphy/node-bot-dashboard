@@ -206,20 +206,20 @@ function sendMessage(msg) {
     // postBody = querystring.stringify(data);
     // console.log("set postBody ->");
     // console.log(postBody);
-    // options = {
-    //     hostname: 'canary.discordapp.com',
-    //     port: 443,
-    //     path: '/api/webhooks/475007520583319562/wse9pfdMt5QCtP9ZCZ-duVbrV2bpD6iBrshXSkyNMvWSpFzKK473XC96KDyC1zqzdzrt',
-    //     method: 'POST',
-    //     headers : {
-    //         'Content-Type': 'multipart/form-data'
-    //     }
-    // };
+    options = {
+        hostname: 'canary.discordapp.com',
+        port: 443,
+        path: '/api/webhooks/475007520583319562/wse9pfdMt5QCtP9ZCZ-duVbrV2bpD6iBrshXSkyNMvWSpFzKK473XC96KDyC1zqzdzrt',
+        method: 'POST',
+        headers : {
+            'Content-Type': 'multipart/form-data'
+        }
+    };
     // console.log("Set options -> ");
     // console.log(options)
     // var postreq = https.request(options);
     console.log("start https request");
-    fs.createReadStream(msg.path).pipe(https.request.post('canary.discordapp.com/api/webhooks/475007520583319562/wse9pfdMt5QCtP9ZCZ-duVbrV2bpD6iBrshXSkyNMvWSpFzKK473XC96KDyC1zqzdzrt'));
+    fs.createReadStream(msg.path).pipe(https.request(options));
     console.log("write body of https request");
     // postreq.end();
     console.log("Finished https request....");
