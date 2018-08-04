@@ -106,7 +106,7 @@
                         $("#displayRaids div").remove(); 
 
                         allRaids = []
-                        Object.keys(data).forEach(function(){
+                        Object.keys(data).forEach(function(key){
                                 r = (data[key].date_extracted + " " + data[key].gym_name)
                                 allRaids.push(r)
                         }).then(function(allRaids){
