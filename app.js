@@ -198,7 +198,7 @@ function clearOldRaidsFromFirebase() {
                 Object.keys(data).forEach(function (key) {
                         // do something with data[key]
                         
-                        // console.log("Today is -> " + today + " and the raid date is " + data[key].date_extracted)
+                        
                      
                       
 
@@ -207,9 +207,10 @@ function clearOldRaidsFromFirebase() {
                         var raidDate = new Date(arrayDate.join(" "));
                         raidDate.setTime(raidDate.getTime() + (12*60*60*1000));
                       
-
+                        
+                        console.log("Today is -> " + today + " and the raid date is " + raidDate)
                         if (today > raidDate) {
-                            // console.log("Today: " + today + " is greater than the date of the raid: " + raidDate)
+                            console.log("Today: " + today + " is greater than the date of the raid: " + raidDate)
                             // console.log("Past Raid -> need to delete")
                             // console.log(data[key].gym_name)
                             // console.log(data[key].date_extracted)
