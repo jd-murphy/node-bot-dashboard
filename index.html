@@ -233,7 +233,7 @@
                 avLine.push(average)
             }
 
-            chart.update({series: [Object.values(data),[avLine]], labels: Object.keys(data)});  // must push 2d array [[]] or [[],[],[]] etc.   cannot push 1d array for most graphs
+            chart.update({series: [Object.values(data),avLine], labels: Object.keys(data)});  // must push 2d array [[]] or [[],[],[]] etc.   cannot push 1d array for most graphs
         }
 
 
