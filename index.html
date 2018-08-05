@@ -153,18 +153,11 @@
                         gyms = {}
             
                 Object.keys(data).forEach(function (key) {
-                        // do something with data[key]
-                        // console.log("data[key].date")
-                        // console.log(data[key].date)
                         dateParts = data[key].date.split(" ")
                         dateOnly = dateParts[0]
                         days[dateOnly] = days[dateOnly] ? days[dateOnly] + 1 : 1;
-                        // console.log("data[key].gym")
-                        // console.log(data[key].gym)
                         gyms[data[key].gym] = gyms[data[key].gym] ? gyms[data[key].gym] + 1 : 1; 
-                        // console.log("data[key].user")
-                        // console.log(data[key].user)
-                        // $('#logTable > tbody:last-child').append('<tr class="table-active"><td>' + data[key].date + '</td><td>' + data[key].info + '</td></tr>');
+                        
                     });
 
                     console.log(JSON.stringify(days))
@@ -172,7 +165,7 @@
                     
 
 
-                    // updateChart();
+                    updateChart(days);
             });
 
 
@@ -223,13 +216,13 @@
 
 
 
-        function updateChart(){ 
-            newNumber = Math.floor(Math.random() * (15));
-            points.shift();
-            points.push(newNumber);
-            newData = []
-            newData.push(points)
-            chart.update({series: newData});  // must push 2d array [[]] or [[],[],[]] etc.   cannot push 1d array for most graphs
+        function updateChart(data){ 
+            // newNumber = Math.floor(Math.random() * (15));
+            // points.shift();
+            // points.push(newNumber);
+            // newData = []
+            // newData.push(points)
+            chart.update({series: [Object.values(data)], labels: Object.keys(data)});  // must push 2d array [[]] or [[],[],[]] etc.   cannot push 1d array for most graphs
         }
 
 
