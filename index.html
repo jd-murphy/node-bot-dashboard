@@ -154,7 +154,7 @@
             
                 Object.keys(data).forEach(function (key) {
                         dateParts = data[key].date.split(" ")
-                        dateOnly = dateParts[0]
+                        dateOnly = dateParts[0].substring(5)
                         days[dateOnly] = days[dateOnly] ? days[dateOnly] + 1 : 1;
                         gyms[data[key].gym] = gyms[data[key].gym] ? gyms[data[key].gym] + 1 : 1; 
                         
@@ -222,7 +222,18 @@
             // points.push(newNumber);
             // newData = []
             // newData.push(points)
-            chart.update({series: [Object.values(data)], labels: Object.keys(data)});  // must push 2d array [[]] or [[],[],[]] etc.   cannot push 1d array for most graphs
+            // minVal = Math.min(...Object.values(data))
+            // maxVal = Math.max(...Object.values(data))
+            const add = (a, b) =>
+                a + b
+            sum = Object.values(data).reduce(add)
+            average = sum / Object.keys(data).length
+            avLine = []
+            for (var i = 0; i < Object.keys(data).length; i++) {
+                avLine.push(average)
+            }
+
+            chart.update({series: [Object.values(data),[avLine]], labels: Object.keys(data)});  // must push 2d array [[]] or [[],[],[]] etc.   cannot push 1d array for most graphs
         }
 
 
