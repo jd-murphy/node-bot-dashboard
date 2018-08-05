@@ -207,6 +207,8 @@
                 // lineSmooth: Chartist.Interpolation.simple({
                 //     divisor: 2
                 // }),
+                showArea: true,
+                showPoint: false,
                 fullWidth: true,
                 chartPadding: {
                     right: 20
@@ -214,16 +216,18 @@
                 low: 0
             });
             chart.on('draw', function(data) {
-                if(data.type == 'line') {
+                if(data.type === 'line' || data.type === 'area') {
                     data.element.animate({
-                        y2: {
-                            dur: '0.4s',
-                            from: data.y1,
-                            to: data.y2
-                        }
+                    d: {
+                        begin: 2000 * data.index,
+                        dur: 2000,
+                        from: data.path.clone().scale(1, 0).translate(0, data.chartRect.height()).stringify(),
+                        to: data.path.clone().stringify(),
+                        easing: Chartist.Svg.Easing.easeOutQuint
+                    }
                     });
                 }
-            });
+                });
 
 
 
