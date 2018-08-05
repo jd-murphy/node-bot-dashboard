@@ -149,21 +149,30 @@
 
                         // console.log("data");
                         // console.log(data);
-                        
+                        days = {}
+                        gyms = {}
             
-                // Object.keys(data).forEach(function (key) {
-                //         // do something with data[key]
-                //         console.log("data[key].date")
-                //         console.log(data[key].date)
-                //         console.log("data[key].gym")
-                //         console.log(data[key].gym)
-                //         console.log("data[key].user")
-                //         console.log(data[key].user)
-                //         // $('#logTable > tbody:last-child').append('<tr class="table-active"><td>' + data[key].date + '</td><td>' + data[key].info + '</td></tr>');
-                //     });
+                Object.keys(data).forEach(function (key) {
+                        // do something with data[key]
+                        // console.log("data[key].date")
+                        // console.log(data[key].date)
+                        dateParts = data[key].date.split(" ")
+                        dateOnly = dateParts[0]
+                        days[dateOnly] = days[dateOnly] ? days[dateOnly] + 1 : 1;
+                        // console.log("data[key].gym")
+                        // console.log(data[key].gym)
+                        gyms[data[key].gym] = gyms[data[key].gym] ? gyms[data[key].gym] + 1 : 1; 
+                        // console.log("data[key].user")
+                        // console.log(data[key].user)
+                        // $('#logTable > tbody:last-child').append('<tr class="table-active"><td>' + data[key].date + '</td><td>' + data[key].info + '</td></tr>');
+                    });
+
+                    console.log(JSON.stringify(days))
+                    console.log(JSON.stringify(gyms))
+                    
 
 
-                    updateChart();
+                    // updateChart();
             });
 
 
