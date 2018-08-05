@@ -23,7 +23,7 @@ var CronJob = require('cron').CronJob;
 
 
 new CronJob('*/30 * * * * *', function() {
-    // new CronJob('00 00 08 * * *', function() {  run every day at 8am UTC hook up twilio to test....
+    // new CronJob('00 00 01 * * *', function() {  run every day at 1am hook up twilio to test....
     console.log('You will see this message every 30 seconds');
     console.log("Running job to find old raids...")
     clearOldRaidsFromFirebase()
@@ -207,7 +207,10 @@ function clearOldRaidsFromFirebase() {
                     });
                     console.log("raids scheduled to be deleted ->")
                     console.log(raidsScheduledForDeletion)
-
+                    raidsScheduledForDeletion.forEach(function(raid) {
+                        console.log("Removing " + raid)
+                        ref.child(raid).remove();
+                    });
 
 
                 io.emit('raidDataUpdate', JSON.stringify(data));
