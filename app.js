@@ -19,14 +19,29 @@ var path = require('path');
 var request = require("request");
 
 var CronJob = require('cron').CronJob;
+accountSid = process.env.ACCOUNTSID
+authToken = process.env.AUTHTOKEN
+const client = require('twilio')(accountSid, authToken);
 
 
 
 new CronJob('*/30 * * * * *', function() {
-    // new CronJob('00 00 01 * * *', function() {  run every day at 1am hook up twilio to test....
+// new CronJob('00 00 01 * * *', function() {  //run every day at 1am hook up twilio to test....
     console.log('You will see this message every 30 seconds');
     console.log("Running job to find old raids...")
     clearOldRaidsFromFirebase()
+    today = new Date();
+    today.setTime(today.getTime() - (5*60*60*1000));
+    client.messages
+        .create({
+            body: ('Just running our Cron job, checking in at ' + today),
+            from: '424-400-2403',
+            to: '541-514-8992'
+        })
+        .then(message => console.log(message.sid))
+        .done();
+    
+
 
   }, null, true, 'America/Los_Angeles');
 
