@@ -133,10 +133,10 @@
                 $("#logTable tbody tr").remove(); 
                 Object.keys(data).forEach(function (key) {
                         // do something with data[key]
-                        console.log("data[key].date")
-                        console.log(data[key].date)
-                        console.log("data[key].info")
-                        console.log(data[key].info)
+                        // console.log("data[key].date")
+                        // console.log(data[key].date)
+                        // console.log("data[key].info")
+                        // console.log(data[key].info)
                         $('#logTable > tbody:last-child').append('<tr class="table-active"><td>' + data[key].date + '</td><td>' + data[key].info + '</td></tr>');
                     });
             });
@@ -147,8 +147,8 @@
                 var data = JSON.parse(notification); //process notication array
 
 
-                        console.log("data");
-                        console.log(data);
+                        // console.log("data");
+                        // console.log(data);
                         
             
                 // Object.keys(data).forEach(function (key) {
@@ -169,8 +169,8 @@
 
 
             socket.on('botAlert', function (notification) {
-                console.log('botAlert!    (index.html)   ->')
-                console.log(notification);
+                // console.log('botAlert!    (index.html)   ->')
+                // console.log(notification);
 
                     // gymHelperBadge
                     // exRaidBotBadge
