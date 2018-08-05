@@ -174,7 +174,7 @@ function clearOldRaidsFromFirebase() {
 
                 today = new Date();
                 console.log("Today is (originally)-> " + today)
-                today = moment().tz(today, "America/Chicago").format()
+                today = moment().tz(today.toString(), "America/Chicago").format()
                 console.log("Today is (after moment TZ to chicago)-> " + today)
 
 
