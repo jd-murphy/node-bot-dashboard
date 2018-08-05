@@ -220,7 +220,7 @@
                     data.element.animate({
                     d: {
                         begin: 2000 * data.index,
-                        dur: 2000,
+                        dur: 4000,
                         from: data.path.clone().scale(1, 0).translate(0, data.chartRect.height()).stringify(),
                         to: data.path.clone().stringify(),
                         easing: Chartist.Svg.Easing.easeOutQuint
@@ -232,23 +232,9 @@
 
 
         function updateChart(data){ 
-            // newNumber = Math.floor(Math.random() * (15));
-            // points.shift();
-            // points.push(newNumber);
-            // newData = []
-            // newData.push(points)
-            // minVal = Math.min(...Object.values(data))
-            // maxVal = Math.max(...Object.values(data))
-            const add = (a, b) =>
-                a + b
-            sum = Object.values(data).reduce(add)
-            average = sum / Object.keys(data).length
-            avLine = []
-            for (var i = 0; i < Object.keys(data).length; i++) {
-                avLine.push(average)
-            }
+           
 
-            chart.update({series: [Object.values(data),avLine], labels: Object.keys(data)});  // must push 2d array [[]] or [[],[],[]] etc.   cannot push 1d array for most graphs
+            chart.update({series: [Object.values(data)], labels: Object.keys(data)});  // must push 2d array for series!
         }
 
 
