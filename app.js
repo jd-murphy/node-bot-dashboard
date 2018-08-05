@@ -118,7 +118,8 @@ server.listen(PORT, () => {
     setUpFirebase();
     getPinDataFromFirebase();
     getLogDataFromFirebase();
-    getRaidDataFromFirebase()
+    getRaidDataFromFirebase();
+    clearOldRaidsFromFirebase();
 });
 
 
