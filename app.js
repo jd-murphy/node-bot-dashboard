@@ -27,7 +27,6 @@ const client = require('twilio')(accountSid, authToken);
 
 // new CronJob('*/30 * * * * *', function() { // runs every 30 sec
 new CronJob('00 00 01 * * *', function() {  //run every day at 1am hook up twilio to test....
-    console.log('You will see this message every 30 seconds');
     console.log("Running job to find old raids...")
     clearOldRaidsFromFirebase()
     today = new Date();
@@ -40,8 +39,6 @@ new CronJob('00 00 01 * * *', function() {  //run every day at 1am hook up twili
         })
         .then(message => console.log(message.sid))
         .done();
-    
-
 
   }, null, true, 'America/Los_Angeles');
 
@@ -71,6 +68,8 @@ app.get('/', (req, res) => {
 app.get('/ex-raid-sign-up', (req, res) => {
     res.sendFile('ex.html',{root: __dirname});
 });
+
+
 app.get('/show-ex-raids', (req, res) => {
     res.sendFile('raids.html',{root: __dirname});
 });
@@ -89,7 +88,6 @@ app.post('/ex-raid-form', upload.single('ssUpload'), (req, res) => {
       }
     res.sendFile('thanks.html',{root: __dirname});
 });
-
 
 
 app.get('/dashboard', (req, res) => {
@@ -135,12 +133,12 @@ function setUpFirebase() {
 function getLogDataFromFirebase() {
             var db = admin.database();
             var ref = db.ref("logs");
-            console.log("connecting to firebase!");
+            console.log("getLogDataFromFirebase()");
             ref.on("value", function(snapshot) {
-                console.log("SNAPSHOT ->  ");
+                console.log("SNAPSHOT   getLogDataFromFirebase() ->  ");
                 data = snapshot.val()
-                console.log("snapshot.val()       data ->")
-                console.log(data)
+                // console.log("snapshot.val()       data ->")
+                // console.log(data)
                 io.emit('notify', JSON.stringify(data));
                 console.log("io.emit notify!!!!      ( app.js )    ->")
             });
@@ -150,12 +148,12 @@ function getLogDataFromFirebase() {
 function getPinDataFromFirebase() {
             var db = admin.database();
             var ref = db.ref("pin_data");
-            console.log("connecting to firebase!");
+            console.log("getPinDataFromFirebase()");
             ref.on("value", function(snapshot) {
-                console.log("SNAPSHOT ->  ");
+                console.log("SNAPSHOT    getPinDataFromFirebase()  ->  ");
                 data = snapshot.val()
-                console.log("snapshot.val()       data ->")
-                console.log(data)
+                // console.log("snapshot.val()       data ->")
+                // console.log(data)
                 io.emit('pinDataUpdate', JSON.stringify(data));
                 console.log("io.emit  pin_data!!!!      ( app.js )    ->")
             });
@@ -165,12 +163,12 @@ function getPinDataFromFirebase() {
 function getRaidDataFromFirebase() {
             var db = admin.database();
             var ref = db.ref("ex_ocr_testing");
-            console.log("connecting to firebase!");
+            console.log("getRaidDataFromFirebase()");
             ref.on("value", function(snapshot) {
-                console.log("SNAPSHOT ->  ");
+                console.log("SNAPSHOT     getRaidDataFromFirebase()   ->  ");
                 data = snapshot.val()
-                console.log("snapshot.val()       data ->")
-                console.log(data)
+                // console.log("snapshot.val()       data ->")
+                // console.log(data)
                 io.emit('raidDataUpdate', JSON.stringify(data));
                 console.log("io.emit  ex_ocr_testing!!!!      ( app.js )    ->")
             });
@@ -180,9 +178,9 @@ function getRaidDataFromFirebase() {
 function clearOldRaidsFromFirebase() {
             var db = admin.database();
             var ref = db.ref("ex_ocr_testing");
-            console.log("connecting to firebase!");
+            console.log("clearOldRaidsFromFirebase()");
             ref.on("value", function(snapshot) {
-                console.log("SNAPSHOT   (From Cron Job)  ->  ");
+                console.log("SNAPSHOT    (From Cron Job)    clearOldRaidsFromFirebase()  ->  ");
                 data = snapshot.val()
                 // console.log("snapshot.val()       data ->")
                 // console.log(data)
@@ -236,6 +234,7 @@ function clearOldRaidsFromFirebase() {
 
 function webhookScreenshot(msg, trainerInfo) {
     
+    console.log("POST TO webhook!     webhookScreenshot()")
 
     var whurl = process.env.WEBHOOK
     var options = { method: 'POST',
