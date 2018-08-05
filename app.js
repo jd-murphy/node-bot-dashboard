@@ -26,14 +26,14 @@ const client = require('twilio')(accountSid, authToken);
 
 
 // new CronJob('*/30 * * * * *', function() { // runs every 30 sec
-new CronJob('00 30 06 * * *', function() {  //run every day at 1am hook up twilio to test....
-    console.log("Running job to find old raids...")
+new CronJob('00 00 02 * * *', function() {  
+    console.log("Running job NUMBER 1 to find old raids...")
     clearOldRaidsFromFirebase()
     today = new Date();
     today.setTime(today.getTime() - (5*60*60*1000));
     client.messages
         .create({
-            body: ('Just running our Cron job, checking in ' + today),
+            body: ('Just running Cron job NUMBER 1   "00 00 02 * * *", checking in ' + today),
             from: '424-400-2403',
             to: '541-514-8992'
         })
@@ -41,6 +41,41 @@ new CronJob('00 30 06 * * *', function() {  //run every day at 1am hook up twili
         .done();
 
   }, null, true, 'America/Los_Angeles');
+
+
+  new CronJob('00 00 06 * * *', function() {  
+    console.log("Running job NUMBER 2 to find old raids...")
+    clearOldRaidsFromFirebase()
+    today = new Date();
+    today.setTime(today.getTime() - (5*60*60*1000));
+    client.messages
+        .create({
+            body: ('Just running Cron job NUMBER 2   "00 00 06 * * *", checking in ' + today),
+            from: '424-400-2403',
+            to: '541-514-8992'
+        })
+        .then(message => console.log(message.sid))
+        .done();
+
+  }, null, true, 'America/Los_Angeles');
+
+
+  new CronJob('00 00 12 * * *', function() {  
+    console.log("Running job NUMBER 3 to find old raids...")
+    clearOldRaidsFromFirebase()
+    today = new Date();
+    today.setTime(today.getTime() - (5*60*60*1000));
+    client.messages
+        .create({
+            body: ('Just running Cron job NUMBER 3   "00 00 12 * * *", checking in ' + today),
+            from: '424-400-2403',
+            to: '541-514-8992'
+        })
+        .then(message => console.log(message.sid))
+        .done();
+
+  }, null, true, 'America/Los_Angeles');
+
 
 
 
