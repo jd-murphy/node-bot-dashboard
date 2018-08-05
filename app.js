@@ -19,7 +19,7 @@ var path = require('path');
 var request = require("request");
 
 var CronJob = require('cron').CronJob;
-var moment = require('moment-timezone');
+
 
 
 new CronJob('*/30 * * * * *', function() {
@@ -173,9 +173,9 @@ function clearOldRaidsFromFirebase() {
                 // console.log(data)
 
                 today = new Date();
-                console.log("Today is (originally)-> " + today)
-                today = moment().tz(today.toString(), "America/Chicago").format()
-                console.log("Today is (after moment TZ to chicago)-> " + today)
+                console.log("Today is (originally)-> " + today);
+                today.setTime(today.getTime() + (6*60*60*1000));
+                console.log("Today is (updated by 6 hours)-> " + today);
 
 
                 raidsScheduledForDeletion = []
