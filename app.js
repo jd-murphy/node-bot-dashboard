@@ -19,7 +19,7 @@ var path = require('path');
 var request = require("request");
 
 var CronJob = require('cron').CronJob;
-var momentTZ = require('moment-timezone');
+var moment = require('moment-timezone');
 
 
 new CronJob('*/30 * * * * *', function() {
@@ -174,8 +174,7 @@ function clearOldRaidsFromFirebase() {
 
                 today = new Date();
                 console.log("Today is (originally)-> " + today)
-                today = momentTZ.tz(today);
-                today = today.clone().tz("America/Chicago")
+                today = moment().tz(today, "America/Chicago").format()
                 console.log("Today is (after moment TZ to chicago)-> " + today)
 
 
