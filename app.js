@@ -98,6 +98,7 @@ app.get('/dashboard', (req, res) => {
 io.on("connection", function (socket) {
     socket.on("loadLogData", function (notification_request) {
         getLogDataFromFirebase();
+        getPinDataFromFirebase();
     });
     socket.on("loadRaidData", function (notification_request) {  
         getRaidDataFromFirebase();
