@@ -206,7 +206,7 @@ function clearOldRaidsFromFirebase() {
                         arrayDate = data[key].date_extracted.split(" ")
                         arrayDate.splice(2,0,today.getFullYear()) // need to handle new year roll over case.... this should work until then.. dont forget....
                         var raidDate = new Date(arrayDate.join(" "));
-                        raidDate.setTime(raidDate.getTime() + (12*60*60*1000));
+                        raidDate.setTime(raidDate.getTime() + (6*60*60*1000));
                       
                         
                         console.log("Today is -> " + today + " and the raid date is " + raidDate)
