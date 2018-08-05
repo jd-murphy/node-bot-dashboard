@@ -25,15 +25,15 @@ const client = require('twilio')(accountSid, authToken);
 
 
 
-// new CronJob('00 00 02 * * *', function() {  
-new CronJob('*/30 * * * * *', function() {  
+new CronJob('00 00 02 * * *', function() {    // runs daily at 4am
+// new CronJob('*/30 * * * * *', function() {  // 30 sec interval
     console.log("Running cron job to find old raids...")
-    raidsScheduledForDeletion = clearOldRaidsFromFirebase()
+    clearOldRaidsFromFirebase()
     today = new Date();
     today.setTime(today.getTime() - (5*60*60*1000));
     client.messages
         .create({
-            body: ('Just running Cron job   "00 00 02 * * *", checking in ' + today + " Here are the entries that were deleted -> " + raidsScheduledForDeletion),
+            body: ('Just running Cron job   "00 00 02 * * *", checking in ' + today),
             from: '424-400-2403',
             to: '541-514-8992'
         })
@@ -230,7 +230,7 @@ function clearOldRaidsFromFirebase() {
 
                 io.emit('raidDataUpdate', JSON.stringify(data));
                 console.log("io.emit  ex_ocr_testing!!!!      ( app.js )    ->")
-                return raidsScheduledForDeletion;
+                
             });
         }
 
