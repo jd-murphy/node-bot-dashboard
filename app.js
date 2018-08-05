@@ -174,7 +174,7 @@ function clearOldRaidsFromFirebase() {
 
                 today = new Date();
                 console.log("Today is (originally)-> " + today);
-                today.setTime(today.getTime() + (6*60*60*1000));
+                today.setTime(today.getTime() - (6*60*60*1000));
                 console.log("Today is (updated by 6 hours)-> " + today);
 
 
