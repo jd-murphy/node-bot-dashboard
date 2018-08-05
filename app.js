@@ -25,8 +25,8 @@ const client = require('twilio')(accountSid, authToken);
 
 
 
-new CronJob('*/30 * * * * *', function() { // runs every 30 sec
-// new CronJob('00 00 01 * * *', function() {  //run every day at 1am hook up twilio to test....
+// new CronJob('*/30 * * * * *', function() { // runs every 30 sec
+new CronJob('00 30 06 * * *', function() {  //run every day at 1am hook up twilio to test....
     console.log("Running job to find old raids...")
     clearOldRaidsFromFirebase()
     today = new Date();
