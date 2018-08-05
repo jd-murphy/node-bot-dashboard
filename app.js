@@ -19,10 +19,11 @@ var path = require('path');
 var request = require("request");
 
 var CronJob = require('cron').CronJob;
+var momentTZ = require('moment-timezone');
 
 
 new CronJob('*/30 * * * * *', function() {
-    // new CronJob('00 00 02 * * *', function() {  run every day at 2am hook up twilio to test....
+    // new CronJob('00 00 08 * * *', function() {  run every day at 8am UTC hook up twilio to test....
     console.log('You will see this message every 30 seconds');
     console.log("Running job to find old raids...")
     clearOldRaidsFromFirebase()
@@ -172,7 +173,11 @@ function clearOldRaidsFromFirebase() {
                 // console.log(data)
 
                 today = new Date();
-                console.log("Today is -> " + today)
+                console.log("Today is (originally)-> " + today)
+                today = momentTZ.tz(today);
+                today = today.clone().tz("America/Chicago")
+                console.log("Today is (after moment TZ to chicago)-> " + today)
+
 
                 raidsScheduledForDeletion = []
 
