@@ -28,7 +28,48 @@ const client = require('twilio')(accountSid, authToken);
 new CronJob('00 00 02 * * *', function() {    // runs daily at 4am
 // new CronJob('*/30 * * * * *', function() {  // 30 sec interval
     console.log("Running cron job to find old raids...")
-    clearOldRaidsFromFirebase()
+    
+    var db = admin.database();
+    var ref = db.ref("ex_ocr_testing");
+    console.log("clearOldRaidsFromFirebase()");
+    ref.once("value", function(snapshot) { // runs once a day on cron job
+        console.log("SNAPSHOT    (From Cron Job)    clearOldRaidsFromFirebase()  ->  ");
+        data = snapshot.val()
+
+        today = new Date();
+        console.log("Today is (originally)-> " + today);
+        today.setTime(today.getTime() - (5*60*60*1000));
+        console.log("Today is (updated by 5 hours)-> " + today);
+
+        raidsScheduledForDeletion = []
+
+        Object.keys(data).forEach(function (key) {
+                // do something with data[key]
+
+                arrayDate = data[key].date_extracted.split(" ")
+                arrayDate.splice(2,0,today.getFullYear()) // need to handle new year roll over case.... this should work until then.. dont forget....
+                var raidDate = new Date(arrayDate.join(" "));
+                raidDate.setTime(raidDate.getTime() + (6*60*60*1000));
+               
+                console.log("Today is -> " + today + " and the raid date is " + raidDate)
+                if (today > raidDate) {
+                    console.log("Today: " + today + " is greater than the date of the raid: " + raidDate)
+                    raidsScheduledForDeletion.push(key)
+                } 
+                            
+            });
+            console.log("raids scheduled to be deleted ->")
+            console.log(raidsScheduledForDeletion)
+            raidsScheduledForDeletion.forEach(function(raid) {
+                console.log("Removing " + raid)
+                ref.child(raid).remove();
+            });
+
+        io.emit('raidDataUpdate', JSON.stringify(data));
+        console.log("io.emit  ex_ocr_testing!!!!      ( app.js )    ->")
+        
+    });
+
     today = new Date();
     today.setTime(today.getTime() - (5*60*60*1000));
     client.messages
@@ -182,46 +223,31 @@ function clearOldRaidsFromFirebase() {
             var db = admin.database();
             var ref = db.ref("ex_ocr_testing");
             console.log("clearOldRaidsFromFirebase()");
-            ref.on("value", function(snapshot) {
-                console.log("SNAPSHOT    (From Cron Job)    clearOldRaidsFromFirebase()  ->  ");
+            ref.on("value", function(snapshot) {  // runs every time any value in ex_ocr_testing is updated
+                console.log("SNAPSHOT      clearOldRaidsFromFirebase()  ->  ");
                 data = snapshot.val()
-                // console.log("snapshot.val()       data ->")
-                // console.log(data)
 
                 today = new Date();
                 console.log("Today is (originally)-> " + today);
                 today.setTime(today.getTime() - (5*60*60*1000));
                 console.log("Today is (updated by 5 hours)-> " + today);
 
-
                 raidsScheduledForDeletion = []
 
                 Object.keys(data).forEach(function (key) {
                         // do something with data[key]
-                        
-                        
-                     
-                      
 
                         arrayDate = data[key].date_extracted.split(" ")
                         arrayDate.splice(2,0,today.getFullYear()) // need to handle new year roll over case.... this should work until then.. dont forget....
                         var raidDate = new Date(arrayDate.join(" "));
                         raidDate.setTime(raidDate.getTime() + (6*60*60*1000));
-                      
-                        
+                       
                         console.log("Today is -> " + today + " and the raid date is " + raidDate)
                         if (today > raidDate) {
                             console.log("Today: " + today + " is greater than the date of the raid: " + raidDate)
-                            // console.log("Past Raid -> need to delete")
-                            // console.log(data[key].gym_name)
-                            // console.log(data[key].date_extracted)
-                            // console.log(data[key].discord_name)
-                            // console.log(key)
                             raidsScheduledForDeletion.push(key)
                         } 
-               
-                       
-                        
+                                    
                     });
                     console.log("raids scheduled to be deleted ->")
                     console.log(raidsScheduledForDeletion)
@@ -229,7 +255,6 @@ function clearOldRaidsFromFirebase() {
                         console.log("Removing " + raid)
                         ref.child(raid).remove();
                     });
-
 
                 io.emit('raidDataUpdate', JSON.stringify(data));
                 console.log("io.emit  ex_ocr_testing!!!!      ( app.js )    ->")
