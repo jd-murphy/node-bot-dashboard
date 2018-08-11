@@ -163,12 +163,12 @@
             function filterGymNames() {
                 console.log("running filterGymNames()")
                 var gymInput = document.getElementById('filterGymInput')
-                var typedName = gymInput.value.lower();
+                var typedName = gymInput.value.toLowerCase();
 
                 var divs = document.querySelectorAll('[data-descriptor=exRaidDiv]');
                 for (var i = 0; i < divs.length; i++) {
 
-                    gymName = divs[i].getAttribute('data-gym-name').lower();
+                    gymName = divs[i].getAttribute('data-gym-name').toLowerCase();
                     divID = divs[i].getAttribute('id');
                     // console.log(gymName);
                     // console.log(divID);
