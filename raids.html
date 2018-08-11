@@ -49,7 +49,7 @@
                     </div>
                     <div class="container">
                         <div class="col-md-8 d-flex justify-content-center row">
-                            <input type="text" id="filterGymInput" placeholder="Type Gym Name to Filter" value="" style="width: 80%;">
+                            <input type="text" id="filterGymInput" placeholder="Type Gym Name to Filter" onkeyup="filterGymNames();" value="" style="width: 80%;">
                         </div> 
                     </div>
        
@@ -85,6 +85,7 @@
 
 
             $(document).ready(function(){
+
             
 
                    var socket = io();
@@ -159,6 +160,16 @@
                 socket.emit('loadRaidData');
             });
                 
+            function filterGymNames() {
+                console.log("running filterGymNames()")
+                var divs = document.querySelectorAll('[data-descriptor=exRaidDiv]');
+                for (var i = 0; i < divs.length; i++) {
+                    gymName = divs[i].getAttribute('data-gym-name');
+                    divID = divs[i].getAttribute('id');
+                    console.log(gymName);
+                    console.log(divID);
+                }
+            }
             
 
         </script>
