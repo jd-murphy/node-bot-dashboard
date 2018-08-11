@@ -162,12 +162,21 @@
                 
             function filterGymNames() {
                 console.log("running filterGymNames()")
+                var gymInput = document.getElementById('filterGymInput')
+                var typedName = gymInput.value
+
                 var divs = document.querySelectorAll('[data-descriptor=exRaidDiv]');
                 for (var i = 0; i < divs.length; i++) {
+
                     gymName = divs[i].getAttribute('data-gym-name');
                     divID = divs[i].getAttribute('id');
-                    console.log(gymName);
-                    console.log(divID);
+                    // console.log(gymName);
+                    // console.log(divID);
+                    if (gymName.includes(typedName)) {
+                        console.log(gymName);
+                    }
+
+                    
                 }
             }
             
