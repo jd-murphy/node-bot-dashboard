@@ -179,15 +179,12 @@
                     divID = divs[i].getAttribute('id');
                     // console.log(gymName);
                     // console.log(divID);
+                    hideMe = document.getElementById(divID);
                     if (gymName.includes(typedName)) {
                         console.log(gymName);
+                        hideMe.classList.remove("hideMe");
                     } else {
-                        hideMe = document.getElementById(divID);
-                        if (hideMe.classList.contains("hideMe")) {
-                            hideMe.classList.remove("hideMe");
-                        } else {
-                            hideMe.classList.add("hideMe")
-                        }
+                        hideMe.classList.add("hideMe")
                     }
 
                     
