@@ -22,6 +22,13 @@
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
 
+        <sytle>
+            .hideMe {
+                visibility: hidden;
+            }
+        </sytle>
+
+
   </head>
   <body>
 
@@ -48,7 +55,7 @@
                         </div>       
                     </div>
                     <div class="container">
-                        <div class="col-md-8 d-flex justify-content-center row">
+                        <div class="col-md-8 d-flex justify-content-center row" style="padding: 1em">
                             <input type="text" id="filterGymInput" placeholder="Type Gym Name to Filter" onkeyup="filterGymNames();" value="" style="width: 80%;">
                         </div> 
                     </div>
@@ -174,6 +181,13 @@
                     // console.log(divID);
                     if (gymName.includes(typedName)) {
                         console.log(gymName);
+                    } else {
+                        hideMe = document.getElementById(divID);
+                        if (hideMe.classList.contains("hideMe")) {
+                            hideMe.classList.remove("hideMe");
+                        } else {
+                            hideMe.classList.add("hideMe")
+                        }
                     }
 
                     
