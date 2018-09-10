@@ -234,27 +234,31 @@ function clearOldRaidsFromFirebase() {
 
                 raidsScheduledForDeletion = []
 
-                Object.keys(data).forEach(function (key) {
-                        // do something with data[key]
 
-                        arrayDate = data[key].date_extracted.split(" ")
-                        arrayDate.splice(2,0,today.getFullYear()) // need to handle new year roll over case.... this should work until then.. dont forget....
-                        var raidDate = new Date(arrayDate.join(" "));
-                        raidDate.setTime(raidDate.getTime() + (6*60*60*1000));
-                       
-                        console.log("Today is -> " + today + " and the raid date is " + raidDate)
-                        if (today > raidDate) {
-                            console.log("Today: " + today + " is greater than the date of the raid: " + raidDate)
-                            raidsScheduledForDeletion.push(key)
-                        } 
-                                    
-                    });
-                    console.log("raids scheduled to be deleted ->")
-                    console.log(raidsScheduledForDeletion)
-                    raidsScheduledForDeletion.forEach(function(raid) {
-                        console.log("Removing " + raid)
-                        ref.child(raid).remove();
-                    });
+                if (data != null && data != undefined) {
+
+                    Object.keys(data).forEach(function (key) {
+                            // do something with data[key]
+
+                            arrayDate = data[key].date_extracted.split(" ")
+                            arrayDate.splice(2,0,today.getFullYear()) // need to handle new year roll over case.... this should work until then.. dont forget....
+                            var raidDate = new Date(arrayDate.join(" "));
+                            raidDate.setTime(raidDate.getTime() + (6*60*60*1000));
+                        
+                            console.log("Today is -> " + today + " and the raid date is " + raidDate)
+                            if (today > raidDate) {
+                                console.log("Today: " + today + " is greater than the date of the raid: " + raidDate)
+                                raidsScheduledForDeletion.push(key)
+                            } 
+                                        
+                        });
+                        console.log("raids scheduled to be deleted ->")
+                        console.log(raidsScheduledForDeletion)
+                        raidsScheduledForDeletion.forEach(function(raid) {
+                            console.log("Removing " + raid)
+                            ref.child(raid).remove();
+                        });
+                }
 
                 io.emit('raidDataUpdate', JSON.stringify(data));
                 console.log("io.emit  ex_ocr_testing!!!!      ( app.js )    ->")
