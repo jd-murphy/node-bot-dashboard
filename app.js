@@ -25,7 +25,7 @@ const client = require('twilio')(accountSid, authToken);
 
 
 
-new CronJob('00 00 02 * * *', function() {    // runs daily at 4am
+new CronJob('00 00 07 * * *', function() {    // runs daily at 4am
 // new CronJob('*/30 * * * * *', function() {  // 30 sec interval
     console.log("Running cron job to find old raids...")
     
