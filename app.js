@@ -25,7 +25,7 @@ const client = require('twilio')(accountSid, authToken);
 
 
 
-new CronJob('00 00 07 * * *', function() {    // runs daily at 4am
+new CronJob('00 00 08 * * *', function() {    // runs daily at 4am
 // new CronJob('*/30 * * * * *', function() {  // 30 sec interval
     console.log("Running cron job to find old raids...")
     
@@ -42,8 +42,9 @@ new CronJob('00 00 07 * * *', function() {    // runs daily at 4am
         console.log("Today is (updated by 5 hours)-> " + today);
 
         raidsScheduledForDeletion = []
+        if (data != null && data != undefined) {
 
-        Object.keys(data).forEach(function (key) {
+            Object.keys(data).forEach(function (key) {
                 // do something with data[key]
 
                 arrayDate = data[key].date_extracted.split(" ")
@@ -64,6 +65,9 @@ new CronJob('00 00 07 * * *', function() {    // runs daily at 4am
                 console.log("Removing " + raid)
                 ref.child(raid).remove();
             });
+        }
+
+       
 
         io.emit('raidDataUpdate', JSON.stringify(data));
         console.log("io.emit  ex_ocr_testing!!!!      ( app.js )    ->")
