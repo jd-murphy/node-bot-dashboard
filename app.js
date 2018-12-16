@@ -25,67 +25,67 @@ const client = require('twilio')(accountSid, authToken);
 
 
 
-new CronJob('00 00 02 * * *', function() {    // runs daily at 4am
-// new CronJob('*/30 * * * * *', function() {  // 30 sec interval
-    console.log("Running cron job to find old raids...")
+// new CronJob('00 00 02 * * *', function() {    // runs daily at 4am
+// // new CronJob('*/30 * * * * *', function() {  // 30 sec interval
+//     console.log("Running cron job to find old raids...")
     
-    var db = admin.database();
-    var ref = db.ref("ex_ocr_testing");
-    console.log("clearOldRaidsFromFirebase()");
-    ref.once("value", function(snapshot) { // runs once a day on cron job
-        console.log("SNAPSHOT    (From Cron Job)    clearOldRaidsFromFirebase()  ->  ");
-        data = snapshot.val()
+//     var db = admin.database();
+//     var ref = db.ref("ex_ocr_testing");
+//     console.log("clearOldRaidsFromFirebase()");
+//     ref.once("value", function(snapshot) { // runs once a day on cron job
+//         console.log("SNAPSHOT    (From Cron Job)    clearOldRaidsFromFirebase()  ->  ");
+//         data = snapshot.val()
 
-        today = new Date();
-        console.log("Today is (originally)-> " + today);
-        today.setTime(today.getTime() - (5*60*60*1000));
-        console.log("Today is (updated by 5 hours)-> " + today);
+//         today = new Date();
+//         console.log("Today is (originally)-> " + today);
+//         today.setTime(today.getTime() - (5*60*60*1000));
+//         console.log("Today is (updated by 5 hours)-> " + today);
 
-        raidsScheduledForDeletion = []
-        if (data != null && data != undefined) {
+//         raidsScheduledForDeletion = []
+//         if (data != null && data != undefined) {
 
-            Object.keys(data).forEach(function (key) {
-                // do something with data[key]
+//             Object.keys(data).forEach(function (key) {
+//                 // do something with data[key]
 
-                arrayDate = data[key].date_extracted.split(" ")
-                arrayDate.splice(2,0,today.getFullYear()) // need to handle new year roll over case.... this should work until then.. dont forget....
-                var raidDate = new Date(arrayDate.join(" "));
-                raidDate.setTime(raidDate.getTime() + (6*60*60*1000));
+//                 arrayDate = data[key].date_extracted.split(" ")
+//                 arrayDate.splice(2,0,today.getFullYear()) // need to handle new year roll over case.... this should work until then.. dont forget....
+//                 var raidDate = new Date(arrayDate.join(" "));
+//                 raidDate.setTime(raidDate.getTime() + (6*60*60*1000));
                
-                console.log("Today is -> " + today + " and the raid date is " + raidDate)
-                if (today > raidDate) {
-                    console.log("Today: " + today + " is greater than the date of the raid: " + raidDate)
-                    raidsScheduledForDeletion.push(key)
-                } 
+//                 console.log("Today is -> " + today + " and the raid date is " + raidDate)
+//                 if (today > raidDate) {
+//                     console.log("Today: " + today + " is greater than the date of the raid: " + raidDate)
+//                     raidsScheduledForDeletion.push(key)
+//                 } 
                             
-            });
-            console.log("raids scheduled to be deleted ->")
-            console.log(raidsScheduledForDeletion)
-            raidsScheduledForDeletion.forEach(function(raid) {
-                console.log("Removing " + raid)
-                ref.child(raid).remove();
-            });
-        }
+//             });
+//             console.log("raids scheduled to be deleted ->")
+//             console.log(raidsScheduledForDeletion)
+//             raidsScheduledForDeletion.forEach(function(raid) {
+//                 console.log("Removing " + raid)
+//                 ref.child(raid).remove();
+//             });
+//         }
 
        
 
-        io.emit('raidDataUpdate', JSON.stringify(data));
-        console.log("io.emit  ex_ocr_testing!!!!      ( app.js )    ->")
+//         io.emit('raidDataUpdate', JSON.stringify(data));
+//         console.log("io.emit  ex_ocr_testing!!!!      ( app.js )    ->")
         
-    });
+//     });
 
-    today = new Date();
-    today.setTime(today.getTime() - (5*60*60*1000));
-    client.messages
-        .create({
-            body: ('Just running Cron job   "00 00 02 * * *", checking in ' + today),
-            from: '424-400-2403',
-            to: '541-514-8992'
-        })
-        .then(message => console.log(message.sid))
-        .done();
+//     today = new Date();
+//     today.setTime(today.getTime() - (5*60*60*1000));
+//     client.messages
+//         .create({
+//             body: ('Just running Cron job   "00 00 02 * * *", checking in ' + today),
+//             from: '424-400-2403',
+//             to: '541-514-8992'
+//         })
+//         .then(message => console.log(message.sid))
+//         .done();
 
-  }, null, true, 'America/Los_Angeles');
+//   }, null, true, 'America/Los_Angeles');
 
 
 
